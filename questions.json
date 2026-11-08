@@ -353,19 +353,20 @@
     "page": 42
   },
   {
+    "q": "Hidrolik kumandalı debriyaj sisteminde pedalın süngerimsi hissedilmesi ve kavramanın tam ayırmaması durumunda ilk olarak hangi sorun araştırılmalıdır?",
+    "topic": "KAVRAMA SİSTEMİ",
+    "explanation": "Hidrolik hatta bulunan hava sıkıştırılabilir olduğu için pedal kuvvetinin ayırma silindirine yeterince iletilmesini engelleyebilir. Sıvı seviyesi, kaçaklar ve sistemin havası kontrol edilmelidir.",
     "difficulty": "Zor",
-    "topic": "Güç Aktarma",
-    "page": 42,
-    "visual": "drivetrain",
-    "q": "Kavrama verimi %99, vites kutusu %96, şaft %98 ve diferansiyel %95 ise yaklaşık toplam mekanik verim yüzde kaçtır?",
     "options": [
-      "%86,7",
-      "%88,5",
-      "%90,4",
-      "%93,1"
+      "Kavrama diskinin sürtünme katsayısının yükselmesi",
+      "Hidrolik hatta hava bulunması veya sıvı kaybı",
+      "Volan yüzeyinde sürtünme miktarının artması",
+      "Diferansiyel dişli boşluğunun büyümesi"
     ],
     "answer": 1,
-    "explanation": "0,99×0,96×0,98×0,95 = 0,8848; yaklaşık %88,5."
+    "kind": "standard",
+    "visual": "clutch",
+    "page": 115
   },
   {
     "difficulty": "Zor",
