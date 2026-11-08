@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Kütüphanesiz SSE/HTTP gerçek zamanlı otomotiv yarışması sunucusu."""
-import os, json, time, math, re, secrets, random, threading, queue, io, csv
+import os, json, time, math, re, secrets, random, threading, queue, io, csv, base64, urllib.request, urllib.error
 from pathlib import Path
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
@@ -8,6 +8,8 @@ from collections import defaultdict
 
 ROOT=Path(__file__).resolve().parent
 QUESTIONS=json.loads((ROOT/'questions.json').read_text(encoding='utf8'))
+QUESTION_FILE=ROOT/'questions.json'
+
 PORT=int(os.environ.get('PORT','8000'))
 rooms={}
 lock=threading.RLock()
@@ -23,6 +25,59 @@ def select_questions():
         random.shuffle(subset)
         chosen.extend(subset[:10])
     return chosen
+
+
+def validate_question(raw):
+    if not isinstance(raw,dict): raise ValueError('Geçersiz soru verisi')
+    q={}
+    for field,limit in [('q',500),('topic',90),('explanation',800)]:
+        value=str(raw.get(field,'')).strip()
+        if not value or len(value)>limit:raise ValueError(field+' alanı boş ya da fazla uzun')
+        q[field]=value
+    if raw.get('difficulty') not in LEVELS:raise ValueError('Zorluk seviyesi geçersiz')
+    q['difficulty']=raw['difficulty']
+    opts=raw.get('options')
+    if not isinstance(opts,list) or len(opts)!=4 or any(not isinstance(o,str) or not o.strip() or len(o)>200 for o in opts):
+        raise ValueError('Dört dolu seçenek gerekli')
+    q['options']=[o.strip() for o in opts]
+    if len(set(x.casefold() for x in q['options']))!=4:raise ValueError('Şıklar birbirinden farklı olmalı')
+    a=raw.get('answer')
+    if type(a)!=int or not 0<=a<=3:raise ValueError('Doğru şık A–D arasında olmalı')
+    q['answer']=a
+    kind=raw.get('kind','standard')
+    if kind not in ('standard','visual','fault'):raise ValueError('Soru türü geçersiz')
+    q['kind']=kind
+    visual=raw.get('visual','drivetrain')
+    allowed=('drivetrain','clutch','converter','gearbox','differential','clutch_hotspot','diff_hotspot','converter_hotspot','gearbox_hotspot')
+    if visual not in allowed:raise ValueError('Görsel seçimi geçersiz')
+    q['visual']=visual
+    try:page=int(raw.get('page',36))
+    except (ValueError,TypeError):raise ValueError('Kitap sayfası geçersiz')
+    if not 1<=page<=1000:raise ValueError('Kitap sayfası geçersiz')
+    q['page']=page
+    return q
+
+
+def github_persist(bank):
+    token=os.environ.get('GITHUB_WRITE_TOKEN','').strip()
+    repo=os.environ.get('GITHUB_REPO','').strip()
+    if not token or not repo:
+        return False
+    if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',repo):
+        raise ValueError('GITHUB_REPO sahibi/depo formatında olmalı')
+    url=f'https://api.github.com/repos/{repo}/contents/questions.json'
+    headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'OtomotivKahoot-Editor'}
+    req=urllib.request.Request(url,headers=headers)
+    try:
+        with urllib.request.urlopen(req,timeout=12) as r: metadata=json.load(r)
+        payload={'message':'Otomotiv Kahoot: öğretmen panelinden soru bankası güncellendi',
+           'content':base64.b64encode((json.dumps(bank,ensure_ascii=False,indent=2)+'\n').encode()).decode(),
+           'sha':metadata['sha']}
+        req=urllib.request.Request(url,data=json.dumps(payload).encode(),headers={**headers,'Content-Type':'application/json'},method='PUT')
+        with urllib.request.urlopen(req,timeout=15) as r:r.read()
+    except (urllib.error.URLError,KeyError,ValueError) as e:
+        raise ValueError('GitHub kalıcı kayıt başarısız: '+str(e)[:200])
+    return True
 
 
 def code_new():
@@ -44,7 +99,7 @@ def state(r,role,player_id=None):
       'ranking':ranking(r),'participants':len(r['players']),
       'answered':len(r['answers']),'joined':r['created'],
       'myId':player_id,'myAnswer':r['answers'].get(player_id),'myScore':r['players'].get(player_id,{}).get('score',0),
-      'host':role=='host','analysis':r['history'] if role=='host' else None, 'roundStats':({'correct':sum(1 for a in r['answers'].values() if a['correct']), 'wrong':sum(1 for a in r['answers'].values() if not a['correct'])} if role=='host' and reveal else None)}
+      'host':role=='host','analysis':r['history'] if role=='host' else None, 'review':(r['review'].get(player_id,[]) if role!='host' and r['phase']=='finished' else None), 'roundStats':({'correct':sum(1 for a in r['answers'].values() if a['correct']), 'wrong':sum(1 for a in r['answers'].values() if not a['correct'])} if role=='host' and reveal else None)}
 
 def emit(code):
     with lock:
@@ -60,6 +115,11 @@ def finalize_round(r):
     q=r['questions'][r['idx']]
     answers=list(r['answers'].values()); total=len(r['players']); correct=sum(bool(a['correct']) for a in answers)
     choices=[sum(1 for a in answers if a['choice']==i) for i in range(4)]
+    for pid in r['players']:
+        ans=r['answers'].get(pid)
+        r['review'].setdefault(pid,[]).append({'index':r['idx']+1,'q':q['q'],'topic':q['topic'],
+           'options':q['options'],'answer':q['answer'],'choice':ans['choice'] if ans else None,
+           'correct':bool(ans and ans['correct']),'explanation':q['explanation'],'page':q['page']})
     r['history'].append({'index':r['idx']+1,'difficulty':q['difficulty'],'topic':q['topic'],
       'question':q['q'],'kind':q.get('kind','standard'),'page':q['page'],'correctChoice':q['answer'],
       'correct':correct,'wrong':len(answers)-correct,'unanswered':max(0,total-len(answers)),
@@ -137,6 +197,20 @@ class Handler(BaseHTTPRequestHandler):
       for x in rows:
        writer.writerow([x['index'],x['difficulty'],x['topic'],x['question'],x['kind'],x['page'],'ABCD'[x['correctChoice']],x['correct'],x['wrong'],x['unanswered'],x['total'],x['rate'],x['avgSeconds'] or '',*x['choices']])
       raw=('\ufeff'+output.getvalue()).encode('utf-8');self.headers_(200,'text/csv; charset=utf-8',len(raw));self.wfile.write(raw);return
+    if p=='/api/questions/export':
+      v=parse_qs(u.query);code=v.get('code',[''])[0].upper()
+      with lock:
+       r,who,err=self.identify(code,{'hostToken':v.get('hostToken',[''])[0]})
+       if err or who!='host':return self.respond({'error':'Öğretmen izni gerekli'},403)
+       raw=(json.dumps(QUESTIONS,ensure_ascii=False,indent=2)+'\n').encode('utf-8')
+      self.headers_(200,'application/json; charset=utf-8',len(raw));self.wfile.write(raw);return
+    if p=='/api/questions':
+      v=parse_qs(u.query);code=v.get('code',[''])[0].upper()
+      with lock:
+       r,who,err=self.identify(code,{'hostToken':v.get('hostToken',[''])[0]})
+       if err or who!='host':return self.respond({'error':'Öğretmen izni gerekli'},403)
+       return self.respond({'questions':QUESTIONS,'persistent':bool(os.environ.get('GITHUB_WRITE_TOKEN') and os.environ.get('GITHUB_REPO')),
+          'message':'GitHub kaydı etkin' if os.environ.get('GITHUB_WRITE_TOKEN') and os.environ.get('GITHUB_REPO') else 'Kalıcı GitHub kaydı ayarlı değil; yapılan değişiklikler sunucu yeniden başlatılınca kaybolabilir. JSON yedeğini indiriniz.'})
     if p=='/api/qr':
       v=parse_qs(u.query);code=v.get('code',[''])[0].upper();
       if code not in rooms:return self.respond({'error':'Oda yok'},404)
@@ -164,7 +238,7 @@ class Handler(BaseHTTPRequestHandler):
     if path=='/api/create':
      with lock:
       code=code_new();r={'code':code,'hostToken':secrets.token_urlsafe(24),'created':time.time(),'phase':'lobby','idx':-1,
-        'questions':select_questions()[:QUESTION_COUNT],'players':{},'answers':{},'history':[],'deadline':0}
+        'questions':select_questions()[:QUESTION_COUNT],'players':{},'answers':{},'history':[],'review':{},'deadline':0}
       rooms[code]=r
      return self.respond({'code':code,'hostToken':r['hostToken']})
     if path=='/api/join':
@@ -180,6 +254,44 @@ class Handler(BaseHTTPRequestHandler):
       r['players'][pid]={'id':pid,'token':token,'name':name,'score':0,'correct':0,'streak':0,'online':True}
       emit(code)
      return self.respond({'code':code,'playerId':pid,'playerToken':token})
+    if path=='/api/questions/save':
+     with lock:
+      r,who,err=self.identify(code,d)
+      if err or who!='host':return self.respond({'error':'Sadece öğretmen soru düzenleyebilir'},403)
+      if r['phase'] not in ('lobby','finished'):
+       return self.respond({'error':'Yarışma sürerken soru düzenleme kapalı'},409)
+      global QUESTIONS
+      try:
+       operation=d.get('operation');index=d.get('index')
+       bank=list(QUESTIONS)
+       if operation=='add':
+        if len(bank)>=150:raise ValueError('Soru limiti: 150')
+        bank.append(validate_question(d.get('question')))
+       elif operation=='edit':
+        if type(index)!=int or not 0<=index<len(bank):raise ValueError('Soru seçimi geçersiz')
+        bank[index]=validate_question(d.get('question'))
+       elif operation=='delete':
+        if type(index)!=int or not 0<=index<len(bank):raise ValueError('Soru seçimi geçersiz')
+        if sum(q['difficulty']==bank[index]['difficulty'] for q in bank)<=1:
+            raise ValueError('Her düzeyde en az bir soru bulunmalı')
+        bank.pop(index)
+       else:raise ValueError('Geçersiz işlem')
+       # Remote persistence before applying local changes.
+       persistent=github_persist(bank)
+       tmp=QUESTION_FILE.with_suffix('.tmp')
+       try:
+        tmp.write_text(json.dumps(bank,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+        tmp.replace(QUESTION_FILE)
+       except OSError:
+        # Read-only deployment filesystem: current server remains functional.
+        pass
+       QUESTIONS=bank
+       # Lobby refreshes selection from updated bank, without disturbing players.
+       if r['phase']=='lobby':r['questions']=select_questions()[:QUESTION_COUNT]
+       emit(code)
+      except (ValueError,TypeError) as exc:
+       return self.respond({'error':str(exc)},400)
+     return self.respond({'ok':True,'persistent':persistent,'count':len(QUESTIONS)})
     if path=='/api/action':
      with lock:
       r,who,err=self.identify(code,d)
@@ -196,7 +308,7 @@ class Handler(BaseHTTPRequestHandler):
         r['phase']='finished';r['deadline']=0
        elif action=='restart':
         r['questions']=select_questions()[:QUESTION_COUNT]
-        r['idx']=-1;r['phase']='lobby';r['answers']={};r['history']=[];r['deadline']=0
+        r['idx']=-1;r['phase']='lobby';r['answers']={};r['history']=[];r['review']={};r['deadline']=0
         for p in r['players'].values():p.update(score=0,correct=0,streak=0)
        else:return self.respond({'error':'Bu işlem şu anda kullanılamaz'},409)
       elif action=='answer':

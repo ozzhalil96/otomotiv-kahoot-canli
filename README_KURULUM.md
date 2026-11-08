@@ -90,3 +90,29 @@ CSV yalnızca öğretmenin oturum anahtarıyla alınabilir. Oturum verileri kal�
 - Sınıf içi ölçme değerlendirmede teknik uygunluğu öğretmenin kontrol etmesi önerilir.
 - Tarayıcılar, kullanıcı etkileşimi gerçekleşmeden ses oynatmayı kısıtlayabilir. Öğretmen odasını açıp **Sesi aç / Intro** kontrolüyle sesi etkinleştirebilir.
 - Python web sunucusu yalnızca tek işlem/bellek üzerinde oda bilgisi tutar; birden fazla kopya arasında canlı oturum eşitlemesi yoktur.
+
+## SÜRÜM 5.0: Kişisel tekrar ve soru editörü
+
+- **Öğrenciler:** Yarışma bittikten sonra sonuç ekranında yalnızca kendi yanlış/boş bıraktıkları soruları, verdikleri yanıtları, doğru şıkkı ve teknik açıklamayı görür. Başka öğrencilerin cevapları gösterilmez.
+- **Öğretmen:** Odayı oluşturduktan sonra bekleme ekranının alt kısmında **Soruları yönet** panelini açabilir. Soru ekleyebilir, değiştirebilir, silebilir, dört şıkkı, doğru şıkkı, zorluğu, soru türünü, görseli, konuyu ve kitap sayfasını değiştirebilir. Öğretmen anahtarı olmadan bu işlemler yapılamaz.
+- **Güvenlik:** Soru bankası ve doğru yanıtlar öğrenciye yarışma sırasında gönderilmez. Sorular yarışma oynanırken düzenlenemez.
+- **30 soruluk format:** Sistem 10 kolay + 10 orta + 10 zor soruyu seçer. Her düzeyde en az 10 soru bulundurun. Bu düzeylerin herhangi birinde daha az soru bırakılırsa yarışma 30'dan kısa olacaktır.
+
+### ÖNEMLİ: Render'da kalıcı kaydetme
+
+Render'ın Free servisi üzerinde diske yazılan dosyalar **yeniden başlatma/yeniden dağıtım sonrasında kalıcı değildir**. GitHub ayarları olmadan panelde yaptığınız düzenlemeler çalışan sunucuda geçerli olur, fakat daha sonra kaybolabilir. Her düzenlemeden sonra **JSON yedeğini indir** seçeneğini kullanın.
+
+Soru panelinden yaptığınız değişikliklerin **doğrudan GitHub'daki `questions.json` dosyasına kalıcı işlenmesi** için:
+
+1. GitHub'da Fine-grained personal access token oluşturun. Yalnızca oyun deposuna erişim ve **Contents: Read and write** yetkisi verin. Token'ı öğrencilere ya da depodaki dosyalara KESİNLİKLE koymayın.
+2. Render -> `otomotiv-kahoot-canli` servisi -> **Environment** alanına iki gizli değişken ekleyin:
+   - `GITHUB_REPO`: `kullanici-adi/otomotiv-kahoot-canli` (gerçek GitHub kullanıcı ve depo adını yazın).
+   - `GITHUB_WRITE_TOKEN`: GitHub'dan oluşturduğunuz token.
+3. Render'da **Auto-Deploy** ayarını kapatın. Yoksa panelde soru değiştirince GitHub'a commit atılır ve hemen yeni dağıtım tetiklenerek aktif oda sıfırlanabilir.
+4. Bu ayarlardan sonra oluşturulan öğretmen odasında soru kaydettiğinizde sunucu `questions.json` dosyasını GitHub'a commit eder. Soru bankası GitHub'da kalıcıdır. **Değişiklikleri mümkünse sınıf başlamadan yapın.** Render'da manuel yeniden dağıtım yapınca yeni dosya yüklenir.
+
+GitHub token ayarı olmadan da öğretmen editörü çalışır. Önemli: öğretmen bağlantısındaki gizli oturum anahtarını başkalarıyla paylaşmayın; yalnızca katılım QR kodunu gösterin.
+
+### GitHub yükleme
+
+ZIP açıldığında **ana dizinde** `server.py`, `questions.json`, `requirements.txt`, `render.yaml`, `README_KURULUM.md` ve `public/` klasörü bulunur. `public/` içinde `index.html`; `public/assets/` içinde `app.js`, `sound.js`, `style.css` vardır. GitHub'da bu konumlara yükleyin. ZIP'i doğrudan GitHub'a yüklemeyin.

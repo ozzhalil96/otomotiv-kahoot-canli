@@ -1,10 +1,9 @@
 [
   {
-    "difficulty": "Kolay",
-    "topic": "Güç Aktarma",
-    "page": 36,
-    "visual": "drivetrain",
     "q": "Güç aktarma organlarının temel görevi nedir?",
+    "topic": "Güç Aktarma",
+    "explanation": "Güç aktarma organları motor torkunu ve hareketini uygun hız ve yönde çekiş tekerleklerine taşır.",
+    "difficulty": "Kolay",
     "options": [
       "Motor hareketini çekiş tekerleklerine iletmek",
       "Motor hareketini direksiyon sistemine iletmek",
@@ -12,7 +11,9 @@
       "Motor hareketini süspansiyon yaylarına iletmek"
     ],
     "answer": 0,
-    "explanation": "Güç aktarma organları motor torkunu ve hareketini uygun hız ve yönde çekiş tekerleklerine taşır."
+    "kind": "standard",
+    "visual": "drivetrain",
+    "page": 36
   },
   {
     "difficulty": "Kolay",
