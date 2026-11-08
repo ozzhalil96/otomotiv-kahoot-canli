@@ -231,7 +231,7 @@ class Handler(BaseHTTPRequestHandler):
     path=(ROOT/'public'/file).resolve()
     if not path.is_relative_to((ROOT/'public').resolve()) or not path.is_file():return self.respond({'error':'Bulunamadı'},404)
     buf=path.read_bytes();ext=path.suffix
-    mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml'}
+    mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.jpg':'image/jpeg','.png':'image/png'}
     self.headers_(200,mime.get(ext,'application/octet-stream'),len(buf));self.wfile.write(buf)
  def do_POST(self):
     path=urlparse(self.path).path;d=self.read_json();code=str(d.get('code','')).upper().strip()

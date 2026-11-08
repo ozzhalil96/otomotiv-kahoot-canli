@@ -337,36 +337,34 @@
     "kind": "visual"
   },
   {
-    "q": "Güç aktarma organlarında mekanik verim kaybını değerlendirirken aşağıdakilerden hangisi doğrudan aktarma elemanlarında meydana gelen parazitik kayba örnektir?",
-    "topic": "GÜÇ AKTARMA",
-    "explanation": "Dişli temasları ve yatak sürtünmeleri hareket iletiminde kayba neden olur. Hava direnci ve yokuş direnci ise taşıt hareketine etki eden dış dirençlerdir.",
     "difficulty": "Zor",
+    "topic": "Mekanik Vites Kutusu",
+    "page": 166,
+    "visual": "gearbox",
+    "q": "Giriş devri 3000 dev/dk, birinci dişli kademesi i₁=1,5, ikinci kademe i₂=2 ve son dişli oranı i₀=4 ise tekerlek devri kaç dev/dk olur?",
     "options": [
-      "Tekerleklerde oluşan yol tutuş kuvveti",
-      "Taşıtın karşılaştığı aerodinamik direnç",
-      "Vites kutusu yatak ve dişli sürtünmeleri",
-      "Taşıtın yokuş çıkarken kazandığı potansiyel enerji"
+      "100",
+      "125",
+      "150",
+      "250"
     ],
-    "answer": 2,
-    "kind": "standard",
-    "visual": "drivetrain",
-    "page": 42
+    "answer": 3,
+    "explanation": "Toplam oran=1,5×2×4=12; tekerlek devri=3000/12=250 dev/dk."
   },
   {
-    "q": "Hidrolik kumandalı debriyaj sisteminde pedalın süngerimsi hissedilmesi ve kavramanın tam ayırmaması durumunda ilk olarak hangi sorun araştırılmalıdır?",
-    "topic": "KAVRAMA SİSTEMİ",
-    "explanation": "Hidrolik hatta bulunan hava sıkıştırılabilir olduğu için pedal kuvvetinin ayırma silindirine yeterince iletilmesini engelleyebilir. Sıvı seviyesi, kaçaklar ve sistemin havası kontrol edilmelidir.",
     "difficulty": "Zor",
+    "topic": "Güç Aktarma",
+    "page": 42,
+    "visual": "drivetrain",
+    "q": "Kavrama verimi %99, vites kutusu %96, şaft %98 ve diferansiyel %95 ise yaklaşık toplam mekanik verim yüzde kaçtır?",
     "options": [
-      "Kavrama diskinin sürtünme katsayısının yükselmesi",
-      "Hidrolik hatta hava bulunması veya sıvı kaybı",
-      "Volan yüzeyinde sürtünme miktarının artması",
-      "Diferansiyel dişli boşluğunun büyümesi"
+      "%86,7",
+      "%88,5",
+      "%90,4",
+      "%93,1"
     ],
     "answer": 1,
-    "kind": "standard",
-    "visual": "clutch",
-    "page": 115
+    "explanation": "0,99×0,96×0,98×0,95 = 0,8848; yaklaşık %88,5."
   },
   {
     "difficulty": "Zor",

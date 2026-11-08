@@ -116,3 +116,12 @@ GitHub token ayarı olmadan da öğretmen editörü çalışır. Önemli: öğre
 ### GitHub yükleme
 
 ZIP açıldığında **ana dizinde** `server.py`, `questions.json`, `requirements.txt`, `render.yaml`, `README_KURULUM.md` ve `public/` klasörü bulunur. `public/` içinde `index.html`; `public/assets/` içinde `app.js`, `sound.js`, `style.css` vardır. GitHub'da bu konumlara yükleyin. ZIP'i doğrudan GitHub'a yüklemeyin.
+
+
+## 5.1 — Kitaptan orijinal görseller
+- Sekiz görsel türü, kullanıcının sağladığı H.K.S. Cilt 1 PDF'sinden alınan gerçek şekillerle değiştirildi.
+- Görseller `public/assets/book/` altındadır. GitHub'a klasör yoluyla birlikte yükleyin.
+- Resim üzerinde işaretleme gereken kavrama/diferansiyel/tork konvertörü sorularında sarı işaret eklenmiştir.
+- `gearbox_hotspot`, diş sayılarının görselde verildiği özel eğitim şeması olarak korunmuştur; kitap görseli gibi sunulmaz.
+- Kitaptaki görseller soru kartında görsel numarası ve orijinal kitap sayfasıyla etiketlenir.
+- Görsellerin üçüncü kişilere açık internet yayınında yeniden kullanım haklarını kontrol edin.

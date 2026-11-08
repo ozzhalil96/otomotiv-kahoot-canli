@@ -23,3 +23,6 @@
 
 /* v5: teacher editor and personal recap */
 .editorPanel,.reviewPanel{margin-top:22px}.editorActions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}.editorCols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.editorPanel textarea,.editorPanel select{width:100%;background:#0a1930;color:#fff;border:1px solid #476482;border-radius:12px;padding:12px;font:inherit}.editorPanel textarea{resize:vertical}.editorPanel label{font-size:14px}.reviewCard{background:#0d2137;border:1px solid #3d5878;border-radius:16px;padding:15px;margin-top:12px}.reviewCard p{line-height:1.55;margin:9px 0}.reviewCorrect{color:#66e6a0;font-weight:750}@media(max-width:620px){.editorCols{grid-template-columns:1fr}.editorPanel,.reviewPanel{padding:17px}}
+
+.bookFigure{display:block;max-width:100%;width:auto;max-height:330px;object-fit:contain;margin:auto;border-radius:12px;background:#dae3ea;box-shadow:0 9px 22px rgba(0,0,0,.2)}
+@media(max-width:720px){.bookFigure{max-height:250px}}
