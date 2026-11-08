@@ -96,3 +96,7 @@ Bu projede gerçek zamanlı sistem için Python tabanlı **tek sunucu** kullanı
 - Tarayıcı ses oynatmak için ilk kullanıcı dokunuşunu isteyebilir; öğretmen ses kontrolünden açabilir.
 - Öğrencilerin telefonlarından ses çıkmaz. Doğru cevap açıldığında en az bir doğru cevap varsa başarı sesi, hiç doğru cevap yoksa uyarı sesi çalar; gerçek zamanlı istatistik yalnızca öğretmen ekranına iletilir.
 - Sağ alt köşede öğretmen ve okulun imzası gösterilir.
+
+
+## Sürüm kontrolü (3.1)
+Oyunu açınca üstte «SÜRÜM 3.1 · MÜZİK + İMZA» yazısı, sağ altta öğretmen ve okul imzası görünmelidir. Öğretmen oda oluşturunca sağ üstte «YARIŞMA SESLERİ» paneli çıkar. Açılış sesini duymuyorsanız sesi açıp «▶ Intro» düğmesine tıklayın. Bunlar görünmüyorsa GitHub/Render hâlâ eski sürümü yayımlamaktadır. ZIP içindeki klasörün **içeriğini** GitHub deposunun köküne yükleyin (ilave «Otomotiv_Kahoot_Canli» katmanı OLMAMALI). `public/assets/sound.js` dosyasının GitHub üzerinde var olduğunu doğrulayın. Render → Manual Deploy → Deploy latest commit, ardından Ctrl+F5.

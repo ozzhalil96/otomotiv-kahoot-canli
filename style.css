@@ -12,3 +12,5 @@
 .audioVolume input[type=range]{width:95px;min-width:65px;padding:0;border:0;background:transparent;accent-color:#5ee7e7}
 .previewRow button{flex:1}.audioNote{font-size:10px;color:#afc5da}
 @media(max-width:790px){.hostAudio{top:auto;bottom:56px;right:10px;padding:8px;min-width:220px}.hostAudio .audioNote{display:none}.signatureBadge{bottom:9px;right:10px;max-width:60vw}}
+
+.versionTag{font-size:10px;color:#dcfaff;border:1px solid #3a7180;padding:6px 9px;border-radius:9px;background:#12334a;letter-spacing:.25px}.signatureBadge{font-weight:600;color:#fff;border-color:rgba(94,231,231,.6);background:rgba(8,19,38,.87)}@media(max-width:790px){.versionTag{display:none}}
