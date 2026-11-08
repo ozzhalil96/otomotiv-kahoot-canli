@@ -13,7 +13,15 @@ rooms={}
 lock=threading.RLock()
 listeners=defaultdict(set)
 DURATION=int(os.environ.get('QUESTION_SECONDS','25'))
-QUESTION_COUNT=int(os.environ.get('QUESTION_COUNT','15'))
+QUESTION_COUNT=int(os.environ.get('QUESTION_COUNT','30'))
+LEVELS=('Kolay','Orta','Zor')
+def select_questions():
+    chosen=[]
+    for level in LEVELS:
+        subset=[q for q in QUESTIONS if q.get('difficulty')==level]
+        random.shuffle(subset)
+        chosen.extend(subset[:10])
+    return chosen
 
 
 def code_new():
@@ -30,7 +38,7 @@ def state(r,role,player_id=None):
     reveal=r['phase'] in ('reveal','finished')
     return {'code':r['code'],'phase':r['phase'],'index':ix+1 if ix>=0 else 0,'total':len(r['questions']),
       'deadline':round(r['deadline']*1000),'serverNow':round(now*1000),'duration':DURATION,
-      'question':({'q':q['q'],'options':q['options'],'topic':q['topic'],'visual':q['visual'],'page':q['page'],
+      'question':({'q':q['q'],'options':q['options'],'topic':q['topic'],'difficulty':q.get('difficulty','Orta'),'visual':q['visual'],'page':q['page'],
          **({'answer':q['answer'],'explanation':q['explanation']} if reveal else {})} if q else None),
       'ranking':ranking(r),'participants':len(r['players']),
       'answered':len(r['answers']),'joined':r['created'],
@@ -131,7 +139,7 @@ class Handler(BaseHTTPRequestHandler):
     if path=='/api/create':
      with lock:
       code=code_new();r={'code':code,'hostToken':secrets.token_urlsafe(24),'created':time.time(),'phase':'lobby','idx':-1,
-        'questions':random.sample(QUESTIONS,min(QUESTION_COUNT,len(QUESTIONS))),'players':{},'answers':{},'deadline':0}
+        'questions':select_questions()[:QUESTION_COUNT],'players':{},'answers':{},'deadline':0}
       rooms[code]=r
      return self.respond({'code':code,'hostToken':r['hostToken']})
     if path=='/api/join':
@@ -160,7 +168,7 @@ class Handler(BaseHTTPRequestHandler):
        elif action=='next' and r['phase']=='reveal':advance(r)
        elif action=='finish' and r['phase'] in ('question','reveal'):r['phase']='finished';r['deadline']=0
        elif action=='restart':
-        r['questions']=random.sample(QUESTIONS,min(QUESTION_COUNT,len(QUESTIONS)))
+        r['questions']=select_questions()[:QUESTION_COUNT]
         r['idx']=-1;r['phase']='lobby';r['answers']={};r['deadline']=0
         for p in r['players'].values():p.update(score=0,correct=0,streak=0)
        else:return self.respond({'error':'Bu işlem şu anda kullanılamaz'},409)

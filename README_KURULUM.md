@@ -5,7 +5,7 @@
 ## Oyun neler yapar?
 - Öğretmen bilgisayarından yeni bir yarışma odası açar. Oda kodu ve **o anki bağlantıyı içeren gerçek QR kodu** oluşturulur.
 - Öğrenciler QR kodla telefondan bağlanıp isim yazar. Aynı anda en çok 80 öğrenci katılabilir (pratik sınır sunucu ve ağ kapasitesine bağlıdır).
-- 32 soruluk havuzdan rastgele 15 soru seçilir. Her soruda **25 saniye** vardır.
+- Tam 30 soru sorulur: ilk 10 Kolay, sonraki 10 Orta, son 10 Zor. Her zorluk grubu kendi içinde karıştırılır. Her soruda **25 saniye** vardır.
 - Her soruyu doğru ve hızlı yanıtlayan daha yüksek puan alır: 1000 temel + en çok 500 hız bonusu + en çok 400 seri bonusu. Yanlış yanıt sıfır puandır.
 - Öğrencinin cevabı **sunucuda** doğrulanır ve bir soruya yalnızca bir kez cevap verilir.
 - Öğretmen istediği an soru süresini sonlandırıp doğru yanıtı gösterebilir. Herkes cevap verirse doğru yanıt otomatik gösterilir. Süre dolunca da doğru yanıt otomatik açılır.
@@ -60,7 +60,7 @@ Bu projede gerçek zamanlı sistem için Python tabanlı **tek sunucu** kullanı
 ## 4) İçerik ve özelleştirme
 
 - `questions.json`: Sorular, 4 seçenek, doğru cevap indeksi `answer` (0=A, 1=B, 2=C, 3=D), açıklama, kaynak kitap sayfası ve görsel tipi. Değiştirdikten sonra sunucuyu yeniden başlatın.
-- `server.py`: `QUESTION_SECONDS` (varsayılan 25), `QUESTION_COUNT` (varsayılan 15) ortam değişkenleriyle süre ve tur sayısı ayarlanabilir.
+- `server.py`: `QUESTION_SECONDS` (varsayılan 25), `QUESTION_COUNT` (varsayılan 30) ortam değişkenleriyle süre ve tur sayısı ayarlanabilir.
 - `public/assets/app.js`: 5 SVG teknik çizim ve istemci işlevleri.
 - `public/assets/style.css`: Tasarım ve telefon görünümü.
 - Öğrenci adı dışında özel bilgi istenmez; isimler ve puanlar oturum sırasında bellektedir. Gerçek öğrenci adları yerine rumuz kullanılabilir.
@@ -80,3 +80,10 @@ Bu projede gerçek zamanlı sistem için Python tabanlı **tek sunucu** kullanı
 - **Python bulunamadı:** Python kurulumu ve PATH ayarlarını kontrol edin; `py -3 server.py` komutunu deneyin.
 - **QR görünmüyor:** `python -m pip install -r requirements.txt` komutunu çalıştırın.
 - **Yarışma yarıda sıfırlandı:** Sunucu yeniden başlamış olabilir. Uyumayan bir sunucu kullanın.
+
+## 30 soruluk güncellenmiş sürüm
+
+- **Kolay 10 + Orta 10 + Zor 10:** Her yarışma bu sırayla ilerler.
+- **Güçlü çeldiriciler:** Benzer teknik kavramlar, yakın sayısal sonuçlar ve birbirine benzeyen arıza nedenleri kullanılmıştır.
+- **Kitap referansı:** Soruların `page` alanları H.K.S. kitabındaki basılı sayfa numarasını gösterir.
+- **Önceden Render’a yayımladıysanız:** Güncel dosyaları GitHub deponuza yükleyip yeni dağıtım (deploy) yapın; yalnızca eski ZIP’i indirmek sitedeki soruları değiştirmez.

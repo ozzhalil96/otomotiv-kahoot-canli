@@ -1,34 +1,452 @@
 [
-{"topic":"Güç Aktarma","page":36,"visual":"drivetrain","q":"Arkadan itişli klasik yerleşimde şanzıman çıkışından diferansiyele hareketi hangi eleman iletir?","options":["Kardan mili (şaft)","Debriyaj teli","Direksiyon mili","Fren diski"],"answer":0,"explanation":"Şaft, arkadan itişli düzende şanzımandan aldığı hareketi diferansiyele taşır."},
-{"topic":"Güç Aktarma","page":36,"visual":"drivetrain","q":"Güç aktarma organlarından beklenen önemli özellik aşağıdakilerden hangisidir?","options":["Her viteste aynı momenti üretmek","İstenen tork ve hız değişimini sağlamak","Motorun soğutma suyunu dolaştırmak","Yalnız önden çekişli araçta çalışmak"],"answer":1,"explanation":"Aktarma sistemi sürüş koşullarına göre devir ve momentin uyarlanmasını sağlar."},
-{"topic":"Güç Aktarma","page":37,"visual":"drivetrain","q":"Kavramanın temel görevi hangi iki yapı arasındaki güç aktarımını gerektiğinde kesmektir?","options":["Diferansiyel ve aks","Fren ve tekerlek","Motor ve vites kutusu","Direksiyon ve rot kolu"],"answer":2,"explanation":"Kavrama motorla vites kutusu arasındaki bağlantıyı kontrollü şekilde kurar ve keser."},
-{"topic":"Güç Aktarma","page":38,"visual":"differential","q":"Virajda sağ ve sol çekiş tekerleklerinin farklı hızlarda dönmesini sağlayan birim hangisidir?","options":["Volan","Diferansiyel","Baskı plakası","Krank kasnağı"],"answer":1,"explanation":"Diferansiyel virajda çekiş tekerlekleri arasındaki hız farkına izin verir."},
-{"topic":"Güç Aktarma","page":38,"visual":"drivetrain","q":"Diferansiyelden tekerleklere dönme hareketi ileten organ hangisidir?","options":["Aks mili","Şarj dinamosu","Ana merkez","Eksantrik mili"],"answer":0,"explanation":"Aks milleri diferansiyel çıkışındaki hareketi çekiş tekerleklerine iletir."},
-{"topic":"Güç Aktarma","page":40,"visual":"drivetrain","q":"Aşağıdakilerden hangisi taşıta etki eden dış direnç kuvvetlerinden biridir?","options":["Vites dişlisi sürtünmesi","Şaft yatağı kaybı","Hava direnci","Kavrama iç sürtünmesi"],"answer":2,"explanation":"Hava, yuvarlanma, yokuş ve atalet dirençleri taşıtın hareketine karşı etki eder."},
-{"topic":"Güç Aktarma","page":41,"visual":"drivetrain","q":"Güç aktarma organlarında dişli ve yatak sürtünmeleri hangi sonuca neden olur?","options":["Mekanik verim kaybı","Yakıt deposunun dolması","Her durumda momentin sonsuz artışı","Lastik basıncının artması"],"answer":0,"explanation":"Dişliler ve yataklardaki sürtünme enerji kaybı oluşturarak mekanik verimi düşürür."},
-{"topic":"Güç Aktarma","page":36,"visual":"drivetrain","q":"Önden çekişli tipik bir araçta şanzımandan çıkan hareket nasıl tekerleklere gider?","options":["Uzun şaft, arka diferansiyel, arka aks","Ön diferansiyel, akslar, ön tekerlekler","Fren merkezi, kaliper, disk","Radyatör, pompa, fan"],"answer":1,"explanation":"Önden çekişli düzende transaks/diferansiyel üzerinden ön akslara hareket aktarılır."},
-{"topic":"Kavrama","page":74,"visual":"clutch","q":"Mekanik sürtünmeli kavramada motordan gelen döndürme momenti ilk olarak hangi yüzeyle ilişkilidir?","options":["Volan","Direksiyon simidi","Kaliper pistonu","Su pompası"],"answer":0,"explanation":"Motor krankına bağlı volan, kavrama diskinin sıkıştırıldığı sürtünme yüzeylerinden biridir."},
-{"topic":"Kavrama","page":75,"visual":"clutch","q":"Debriyaj pedalına basıldığında standart manuel kavramada ne olur?","options":["Kavrama diski daha çok sıkıştırılır","Motor ve şanzıman arasındaki aktarım ayrılır","Diferansiyel kilitlenir","Motorun yağ pompası durur"],"answer":1,"explanation":"Ayırma mekanizması baskı kuvvetini kaldırarak motor-şanzıman bağlantısını keser."},
-{"topic":"Kavrama","page":75,"visual":"clutch","q":"Kavrama diskinin balata yüzeyleri aşındığında yük altında görülebilecek belirti hangisidir?","options":["Motor devri artarken hızın aynı oranda artmaması","Farların titremesi","Soğutma suyunun taşması","Direksiyonun kilitlenmesi"],"answer":0,"explanation":"Kavrama kaçırmasında motor devri artabilir fakat torkun tamamı şanzımana geçmez."},
-{"topic":"Kavrama","page":80,"visual":"clutch","q":"Hidrolik kavrama kumandasında pedal hareketini taşıyan ortam hangisidir?","options":["Elektrik kıvılcımı","Basınç altındaki hidrolik sıvı","Egzoz gazı","Soğutma havası"],"answer":1,"explanation":"Ana ve yardımcı silindirler hidrolik akışkan basıncıyla ayırma hareketi oluşturur."},
-{"topic":"Kavrama","page":85,"visual":"clutch","q":"Debriyaj tam ayırmıyorsa vites geçişlerinde en olası durum hangisidir?","options":["Vites geçişlerinin zorlaşması ve dişli sesi","Lastik diş derinliğinin artması","Akü kapasitesinin yükselmesi","Yol tutuşun kendiliğinden iyileşmesi"],"answer":0,"explanation":"Tam ayırmayan kavrama giriş milini sürüklemeye devam ederek geçişleri zorlaştırabilir."},
-{"topic":"Kavrama","page":74,"visual":"clutch","q":"Kavrama tertibatının temel işlevi aşağıdakilerden hangisidir?","options":["Aracı yana yatırmak","İlk kalkışta hareketi sarsıntısız iletmek","Diferansiyelde yağ soğutmak","Tekerlek açısını ayarlamak"],"answer":1,"explanation":"Kavrama kalkışta momenti kademeli ileterek sarsıntıyı azaltır."},
-{"topic":"Tork Konvertörü","page":141,"visual":"converter","q":"Tork konvertöründe motor tarafından döndürülen ilk hidrodinamik eleman hangisidir?","options":["Türbin","Pompa çarkı","Aks dişlisi","Senkromeç"],"answer":1,"explanation":"Pompa çarkı motorla birlikte dönerek yağ akışı oluşturur."},
-{"topic":"Tork Konvertörü","page":142,"visual":"converter","q":"Tork konvertöründe akışın yönünü düzenleyerek tork çoğalmasına katkıda bulunan parça hangisidir?","options":["Stator (reaktör)","Kardan mafsalı","Debriyaj çatalı","Vites kolu"],"answer":0,"explanation":"Stator özellikle pompa ve türbin arasında büyük devir farkı varken dönüş akışını yönlendirir."},
-{"topic":"Tork Konvertörü","page":142,"visual":"converter","q":"Tork konvertöründeki türbin hangi elemana hareket iletir?","options":["Şanzıman girişine","Egzoz susturucusuna","Direksiyon kolonuna","Fren servosuna"],"answer":0,"explanation":"Türbin akışkandan aldığı enerjiyi otomatik şanzımanın girişine aktarır."},
-{"topic":"Tork Konvertörü","page":141,"visual":"converter","q":"Tork konvertörü genel olarak hangi tip kavrama prensibine dayanır?","options":["Elektromanyetik fren","Hidrodinamik güç aktarımı","Dişliyle doğrudan sabit kilitleme","Zincirle tahrik"],"answer":1,"explanation":"Tork konvertörü hidrolik yağın akışıyla motor-şanzıman arasında moment aktarır."},
-{"topic":"Tork Konvertörü","page":145,"visual":"converter","q":"Tork konvertöründe kilitleme kavraması (lock-up) devreye girdiğinde ne amaçlanır?","options":["Hidrodinamik kaymayı azaltmak","Vites kolunu kilitlemek","Aksları ayırmak","Motor yağını boşaltmak"],"answer":0,"explanation":"Lock-up kavraması uygun koşullarda pompa ve türbin arasındaki kayma kaybını azaltır."},
-{"topic":"Tork Konvertörü","page":156,"visual":"converter","q":"Stator tek yönlü kavraması arızasının değerlendirilmesinde hangi yaklaşım daha uygundur?","options":["Şanzıman çevresini boyamak","Belirtileri ve uygun test sonuçlarını birlikte incelemek","Yalnız lastik basıncını artırmak","Direksiyon simidini değiştirmek"],"answer":1,"explanation":"Konvertör arızası için belirtiler ve üretici prosedürüne uygun tanı testleri birlikte değerlendirilir."},
-{"topic":"Mekanik Vites","page":162,"visual":"gearbox","q":"Mekanik vites kutusunun ana görevlerinden biri hangisidir?","options":["Motor yağ basıncını sabit tutmak","Farklı dişli oranlarıyla tork ve devri değiştirmek","Yakıtın oktanını artırmak","Fren sıvısını basınçlandırmak"],"answer":1,"explanation":"Mekanik vites kutusu dişli oranlarıyla çıkış momenti ve devrini değiştirir."},
-{"topic":"Mekanik Vites","page":171,"visual":"gearbox","q":"20 dişli giriş dişlisi 60 dişli çıkış dişlisini sürüyor. İdeal dişli oranı kaçtır? (i = Zçıkış / Zgiriş)","options":["0,33","2","3","4"],"answer":2,"explanation":"i = 60 / 20 = 3; giriş hızı idealde üçte bire düşer."},
-{"topic":"Mekanik Vites","page":171,"visual":"gearbox","q":"Giriş devri 2400 dev/dak, dişli oranı 3:1 ise ideal çıkış devri kaçtır?","options":["600 dev/dak","800 dev/dak","1600 dev/dak","7200 dev/dak"],"answer":1,"explanation":"nçıkış = 2400 / 3 = 800 dev/dak."},
-{"topic":"Mekanik Vites","page":171,"visual":"gearbox","q":"100 Nm giriş momenti, 2:1 dişli oranı ve %90 verim varsa çıkış momenti kaç Nm'dir?","options":["90 Nm","180 Nm","200 Nm","220 Nm"],"answer":1,"explanation":"Mçıkış = 100 × 2 × 0,90 = 180 Nm."},
-{"topic":"Mekanik Vites","page":171,"visual":"gearbox","q":"İdeal 4:1 redüksiyon oranına sahip sabit dişli çifti için hangisi doğrudur?","options":["Çıkış devri 4 kat artar","Çıkış devri değişmez","Çıkış devri 4'te bire düşer","Çıkış momenti sıfır olur"],"answer":2,"explanation":"Redüksiyonda çıkış devri giriş devrinin oran kadar altında kalır."},
-{"topic":"Mekanik Vites","page":166,"visual":"gearbox","q":"Senkromeç mekanizmasının temel görevi nedir?","options":["Dişlilerin kilitlenmesinden önce hızlarını eşitlemeye yardımcı olmak","Fren pedalını sertleştirmek","Diferansiyel yağını değiştirmek","Şaft uzunluğunu ayarlamak"],"answer":0,"explanation":"Senkromeç, bağlantı öncesinde devir eşitleme ile sessiz ve kolay vites geçişi sağlar."},
-{"topic":"Mekanik Vites","page":165,"visual":"gearbox","q":"Düz vitesli araçta geri vitese geçişin amacı nedir?","options":["Motor sıcaklığını azaltmak","Çıkış dönme yönünü tersine çevirmek","Fren basıncını artırmak","Diferansiyeli sökmek"],"answer":1,"explanation":"Geri vites dişli düzeni çıkış dönme yönünü ileri sürüşe göre tersine çevirir."},
-{"topic":"Mekanik Vites","page":171,"visual":"gearbox","q":"Giriş 3000 dev/dak ve çıkış 1000 dev/dak ise dişli oranı nedir?","options":["1:3","2:1","3:1","4:1"],"answer":2,"explanation":"i = ngiriş / nçıkış = 3000 / 1000 = 3."},
-{"topic":"Mekanik Vites","page":171,"visual":"gearbox","q":"50 Nm giriş momenti ve 3:1 oranla %100 verim varsayılırsa çıkış momenti kaç Nm'dir?","options":["16,7 Nm","50 Nm","100 Nm","150 Nm"],"answer":3,"explanation":"Mçıkış = 50 × 3 = 150 Nm (ideal koşulda)."},
-{"topic":"Mekanik Vites","page":168,"visual":"gearbox","q":"Vites kutusunda dişlilerle ilgili olağandışı uğultu şikâyetinde ilk yaklaşım hangisidir?","options":["Şanzımanı test yapmadan değiştirmek","Yağ seviyesi ve durumunu kontrol etmek","Aracı daha yüksek devirde kullanmak","Lastik hava basıncını sıfırlamak"],"answer":1,"explanation":"Arıza teşhisinde yağ seviyesi, yağın durumu ve çalışma belirtileri kontrol edilmelidir."},
-{"topic":"Güç Aktarma","page":38,"visual":"differential","q":"Diferansiyelin ayna-mahruti dişli düzeninin klasik arkadan itişli taşıtlarda bir işlevi nedir?","options":["Hareket yönünü uygun açıyla değiştirmek","Akünün şarjını ölçmek","Debriyaj pedalını geri getirmek","Fren hidroliğini sıkıştırmak"],"answer":0,"explanation":"Ayna-mahruti çiftinde dönme hareketinin doğrultusu değiştirilir."},
-{"topic":"Kavrama","page":74,"visual":"clutch","q":"Kavrama diskindeki burulma yaylarının önemli görevi hangisidir?","options":["Yakıt püskürtmek","Tork dalgalanmaları ve titreşimleri sönümlemeye yardımcı olmak","Tekerlekleri yönlendirmek","Aracın radyatörünü soğutmak"],"answer":1,"explanation":"Disk göbeği yayları ani moment değişimlerinin iletimini yumuşatır."}
+  {
+    "difficulty": "Kolay",
+    "topic": "Güç Aktarma",
+    "page": 36,
+    "visual": "drivetrain",
+    "q": "Güç aktarma organlarının temel görevi nedir?",
+    "options": [
+      "Motor hareketini çekiş tekerleklerine iletmek",
+      "Motor hareketini direksiyon sistemine iletmek",
+      "Motor hareketini fren hidroliğine iletmek",
+      "Motor hareketini süspansiyon yaylarına iletmek"
+    ],
+    "answer": 0,
+    "explanation": "Güç aktarma organları motor torkunu ve hareketini uygun hız ve yönde çekiş tekerleklerine taşır."
+  },
+  {
+    "difficulty": "Kolay",
+    "topic": "Güç Aktarma",
+    "page": 37,
+    "visual": "clutch",
+    "q": "Standart manuel aktarmada kavrama hangi iki ünite arasında bulunur?",
+    "options": [
+      "Vites kutusu ile diferansiyel",
+      "Motor ile vites kutusu",
+      "Diferansiyel ile aks mili",
+      "Şaft ile arka aks"
+    ],
+    "answer": 1,
+    "explanation": "Kavrama, motor ile vites kutusu arasındaki güç bağlantısını kurar ve keser."
+  },
+  {
+    "difficulty": "Kolay",
+    "topic": "Güç Aktarma",
+    "page": 38,
+    "visual": "differential",
+    "q": "Virajda çekiş tekerleklerinin farklı devirlerde dönmesini sağlayan organ hangisidir?",
+    "options": [
+      "Son dişli grubu",
+      "Aks mili",
+      "Diferansiyel",
+      "Kardan mafsalı"
+    ],
+    "answer": 2,
+    "explanation": "Diferansiyelin iç dişlileri virajda sağ ve sol tekerlerin farklı hızlarda dönmesini sağlar."
+  },
+  {
+    "difficulty": "Kolay",
+    "topic": "Güç Aktarma",
+    "page": 38,
+    "visual": "drivetrain",
+    "q": "Klasik arkadan itişli bir araçta şanzıman çıkışındaki torku diferansiyele çoğunlukla hangi parça iletir?",
+    "options": [
+      "Şaft (kardan mili)",
+      "Aks mili",
+      "Debriyaj diski",
+      "Mahruti mili"
+    ],
+    "answer": 0,
+    "explanation": "Kardan mili, şanzımandan gelen hareketi arkadaki diferansiyele aktarır."
+  },
+  {
+    "difficulty": "Kolay",
+    "topic": "Güç Aktarma",
+    "page": 39,
+    "visual": "differential",
+    "q": "Diferansiyel çıkışından çekiş tekerleğine hareketi hangi parça iletir?",
+    "options": [
+      "Ana mil",
+      "Aks mili",
+      "Prizdirek mili",
+      "Ara mil"
+    ],
+    "answer": 1,
+    "explanation": "Aks milleri diferansiyel ile çekiş tekerlekleri arasında tork iletir."
+  },
+  {
+    "difficulty": "Kolay",
+    "topic": "Güç Aktarma",
+    "page": 40,
+    "visual": "drivetrain",
+    "q": "Aşağıdakilerden hangisi taşıtın dış hareket dirençlerinden biridir?",
+    "options": [
+      "Şanzıman yatak sürtünmesi",
+      "Kavrama sürtünme kaybı",
+      "Diferansiyel dişli kaybı",
+      "Yuvarlanma direnci"
+    ],
+    "answer": 3,
+    "explanation": "Yuvarlanma direnci lastik-yol etkileşimiyle oluşan dış hareket dirençlerindendir."
+  },
+  {
+    "difficulty": "Kolay",
+    "topic": "Kavrama",
+    "page": 75,
+    "visual": "clutch",
+    "q": "Debriyaj pedalına basıldığında standart mekanik kavramada hangi işlem gerçekleşir?",
+    "options": [
+      "Kavrama diski daha sıkı bastırılır",
+      "Motor-vites kutusu bağlantısı ayrılır",
+      "Şanzıman çıkış devri sabitlenir",
+      "Diferansiyel dişlileri kilitlenir"
+    ],
+    "answer": 1,
+    "explanation": "Pedala basıldığında kavramanın ayırması sağlanır; motordan vites kutusuna tork aktarımı kesilir."
+  },
+  {
+    "difficulty": "Kolay",
+    "topic": "Kavrama",
+    "page": 85,
+    "visual": "clutch",
+    "q": "Kavrama diskini volana doğru sıkarak tork iletimini sağlayan eleman hangisidir?",
+    "options": [
+      "Baskı plakası",
+      "Ayırma yatağı",
+      "Debriyaj pedalı",
+      "Prizdirek mili"
+    ],
+    "answer": 0,
+    "explanation": "Baskı plakası kavrama diskini volana bastırarak sürtünmeyle tork aktarılmasını sağlar."
+  },
+  {
+    "difficulty": "Kolay",
+    "topic": "Tork Konvertörü",
+    "page": 141,
+    "visual": "converter",
+    "q": "Hidrodinamik tork konvertörünün temel elemanları hangi seçenekte verilmiştir?",
+    "options": [
+      "Pompa, türbin, stator",
+      "Pompa, diferansiyel, stator",
+      "Türbin, baskı, senkromeç",
+      "Pompa, aks, mahruti"
+    ],
+    "answer": 0,
+    "explanation": "Tork konvertörü pompa, türbin ve stator olmak üzere üç ana hidrodinamik elemandan oluşur."
+  },
+  {
+    "difficulty": "Kolay",
+    "topic": "Mekanik Vites Kutusu",
+    "page": 162,
+    "visual": "gearbox",
+    "q": "Vites kutusu hangi değişimi sağlayarak taşıtın yol koşullarına uyumuna yardımcı olur?",
+    "options": [
+      "Fren basıncı ve pedal kuvveti",
+      "Motor sıcaklığı ve yağ basıncı",
+      "Devir ve döndürme momenti",
+      "Rot açısı ve direksiyon turu"
+    ],
+    "answer": 2,
+    "explanation": "Dişli oranları sayesinde vites kutusu çıkış devri ve momenti değiştirir."
+  },
+  {
+    "difficulty": "Orta",
+    "topic": "Güç Aktarma",
+    "page": 36,
+    "visual": "drivetrain",
+    "q": "Önden çekişli enine motorlu tipik bir araçta hangi aktarım sırası uygundur?",
+    "options": [
+      "Motor → kavrama → vites kutusu/diferansiyel → akslar",
+      "Motor → kavrama → uzun şaft → arka diferansiyel",
+      "Motor → diferansiyel → kavrama → vites kutusu",
+      "Motor → akslar → kavrama → diferansiyel"
+    ],
+    "answer": 0,
+    "explanation": "Önden çekişli transaks düzende vites kutusu ve diferansiyel önde birlikte yer alır; hareket akslarla ön tekerlere geçer."
+  },
+  {
+    "difficulty": "Orta",
+    "topic": "Güç Aktarma",
+    "page": 38,
+    "visual": "differential",
+    "q": "Düz yolda eşit tutunmalı tekerleklerde açık diferansiyelin iki yan dişlisi için hangisi beklenir?",
+    "options": [
+      "Biri durur, diğeri iki kat hızlı döner",
+      "İkisi yaklaşık aynı devirde döner",
+      "Biri motor devrinde, diğeri sıfır devirde döner",
+      "İki teker zıt yönlerde aynı devirde döner"
+    ],
+    "answer": 1,
+    "explanation": "Düz ilerlemede ve benzer yol koşullarında diferansiyel yan dişlileri aynı açısal hıza yakındır."
+  },
+  {
+    "difficulty": "Orta",
+    "topic": "Kavrama",
+    "page": 100,
+    "visual": "clutch",
+    "q": "Debriyaj pedalına tam basılmasına rağmen araç dururken geri vitese geçiş zor ve dişli sesi oluşuyorsa en olası sorun hangisidir?",
+    "options": [
+      "Kavrama tam ayırmıyor",
+      "Kavrama aşırı kaçırıyor",
+      "Diferansiyel kilitleniyor",
+      "Şaft balansı bozuluyor"
+    ],
+    "answer": 0,
+    "explanation": "Kavramanın tam ayırmaması giriş milinde dönmenin sürmesine ve vites geçişinde zorlanmaya yol açar."
+  },
+  {
+    "difficulty": "Orta",
+    "topic": "Kavrama",
+    "page": 108,
+    "visual": "clutch",
+    "q": "Motor devri hızla yükseldiği hâlde aracın hızlanması sınırlıysa önce hangi arıza düşünülmelidir?",
+    "options": [
+      "Kavrama kaçırması",
+      "Kavrama tam ayırmaması",
+      "Vites kolu bağlantı boşluğu",
+      "Aks mafsalı boşluğu"
+    ],
+    "answer": 0,
+    "explanation": "Kavrama kaçırdığında sürtünme yüzeyleri motor torkunu yeterince iletemez; motor devri artarken hız artışı sınırlı kalır."
+  },
+  {
+    "difficulty": "Orta",
+    "topic": "Kavrama",
+    "page": 85,
+    "visual": "clutch",
+    "q": "Standart tek plakalı kuru kavramada baskı yayının kuvveti azalırsa hangi sonuç daha olasıdır?",
+    "options": [
+      "Kavrama sıkma kuvveti azalır ve kaçırma riski artar",
+      "Ayırma yatağı kuvveti artar ve vites oranı düşer",
+      "Diferansiyel kilitlenir ve teker devri eşitlenir",
+      "Ara mil sabitlenir ve şanzıman boşa geçer"
+    ],
+    "answer": 0,
+    "explanation": "Yay baskısının azalması diskin volana yeterli kuvvetle sıkılmasını engelleyebilir."
+  },
+  {
+    "difficulty": "Orta",
+    "topic": "Tork Konvertörü",
+    "page": 144,
+    "visual": "converter",
+    "q": "Tork konvertöründeki statorun tek yön kavraması kalkıştaki moment artışına nasıl katkı sağlar?",
+    "options": [
+      "Statorun uygun yönde dönmesini engelleyerek yağ akışını yönlendirir",
+      "Pompanın motor devrinden daha hızlı dönmesini sağlar",
+      "Türbinin her koşulda pompayla eşdevirli dönmesini sağlar",
+      "Türbin ile pompa arasındaki yağı tamamen durdurur"
+    ],
+    "answer": 0,
+    "explanation": "Stator, belirli çalışma durumlarında yağın dönüş akışını yönlendirerek pompanın işini destekler ve moment çoğalmasına katkı sağlar."
+  },
+  {
+    "difficulty": "Orta",
+    "topic": "Tork Konvertörü",
+    "page": 147,
+    "visual": "converter",
+    "q": "Konvertörde kilitleme kavramasının (lock-up) temel amacı nedir?",
+    "options": [
+      "Kayma kaybını azaltmak için doğrudan mekanik bağlantı sağlamak",
+      "Statoru sabitleyerek her devirde moment çoğaltmak",
+      "Yağ basıncını sıfırlayarak hareketi tamamen kesmek",
+      "Türbinin dönüş yönünü değiştirerek geri vites yapmak"
+    ],
+    "answer": 0,
+    "explanation": "Lock-up kavraması uygun şartlarda pompa/türbin arasındaki kaymayı azaltarak verimi artırır."
+  },
+  {
+    "difficulty": "Orta",
+    "topic": "Mekanik Vites Kutusu",
+    "page": 165,
+    "visual": "gearbox",
+    "q": "Bir dişli çiftinde giriş dişlisi 20, çıkış dişlisi 40 dişli ise ideal devir oranı (giriş/çıkış) kaçtır?",
+    "options": [
+      "0,50",
+      "1,00",
+      "2,00",
+      "4,00"
+    ],
+    "answer": 2,
+    "explanation": "Oran i = Zçıkış / Zgiriş = 40/20 = 2; çıkış devri girişin yarısı olur."
+  },
+  {
+    "difficulty": "Orta",
+    "topic": "Mekanik Vites Kutusu",
+    "page": 165,
+    "visual": "gearbox",
+    "q": "Giriş devri 2400 dev/dk ve i = 3 olan ideal bir vites kademesinde çıkış devri kaç dev/dk olur?",
+    "options": [
+      "600",
+      "800",
+      "1200",
+      "7200"
+    ],
+    "answer": 1,
+    "explanation": "nçıkış = ngiriş/i = 2400/3 = 800 dev/dk."
+  },
+  {
+    "difficulty": "Orta",
+    "topic": "Güç Aktarma",
+    "page": 41,
+    "visual": "drivetrain",
+    "q": "Giriş gücü 100 kW, toplam mekanik verim %85 ise çıkış gücü kaç kW olur?",
+    "options": [
+      "75",
+      "80",
+      "85",
+      "90"
+    ],
+    "answer": 2,
+    "explanation": "Pçıkış = 100 × 0,85 = 85 kW; kalan 15 kW kayıp olarak değerlendirilir."
+  },
+  {
+    "difficulty": "Zor",
+    "topic": "Mekanik Vites Kutusu",
+    "page": 165,
+    "visual": "gearbox",
+    "q": "Bir kademede giriş 18 diş, çıkış 54 diştir. Giriş 2700 dev/dk ise çıkış devri kaç dev/dk olur?",
+    "options": [
+      "810",
+      "900",
+      "1080",
+      "1350"
+    ],
+    "answer": 1,
+    "explanation": "i=54/18=3 ve nçıkış=2700/3=900 dev/dk."
+  },
+  {
+    "difficulty": "Zor",
+    "topic": "Mekanik Vites Kutusu",
+    "page": 165,
+    "visual": "gearbox",
+    "q": "Giriş momenti 180 Nm, vites oranı 2,5 ve bu kademenin mekanik verimi %92 ise çıkış momenti kaç Nm olur?",
+    "options": [
+      "396",
+      "414",
+      "450",
+      "489"
+    ],
+    "answer": 1,
+    "explanation": "Mçıkış = 180 × 2,5 × 0,92 = 414 Nm."
+  },
+  {
+    "difficulty": "Zor",
+    "topic": "Mekanik Vites Kutusu",
+    "page": 166,
+    "visual": "gearbox",
+    "q": "Giriş devri 3000 dev/dk, birinci dişli kademesi i₁=1,5, ikinci kademe i₂=2 ve son dişli oranı i₀=4 ise tekerlek devri kaç dev/dk olur?",
+    "options": [
+      "100",
+      "125",
+      "150",
+      "250"
+    ],
+    "answer": 3,
+    "explanation": "Toplam oran=1,5×2×4=12; tekerlek devri=3000/12=250 dev/dk."
+  },
+  {
+    "difficulty": "Zor",
+    "topic": "Güç Aktarma",
+    "page": 42,
+    "visual": "drivetrain",
+    "q": "Kavrama verimi %99, vites kutusu %96, şaft %98 ve diferansiyel %95 ise yaklaşık toplam mekanik verim yüzde kaçtır?",
+    "options": [
+      "%86,7",
+      "%88,5",
+      "%90,4",
+      "%93,1"
+    ],
+    "answer": 1,
+    "explanation": "0,99×0,96×0,98×0,95 = 0,8848; yaklaşık %88,5."
+  },
+  {
+    "difficulty": "Zor",
+    "topic": "Kavrama",
+    "page": 109,
+    "visual": "clutch",
+    "q": "Kavrama yeni değişmiştir. Pedala tam basıldığında vitesler zor geçiyor; hidrolik devrede hava ve yetersiz ayırma hareketi ölçülüyor. İlk doğru işlem nedir?",
+    "options": [
+      "Hidrolik devrenin havasını alıp ayırma hareketini yeniden kontrol etmek",
+      "Sürtünme diskini tekrar değiştirip yol testine çıkmak",
+      "Diferansiyel dişli boşluğunu ayarlamak",
+      "Şanzıman yağını kalın viskoziteyle değiştirmek"
+    ],
+    "answer": 0,
+    "explanation": "Ölçümle doğrulanan yetersiz ayırma hareketi önce hidrolik hava/yol probleminin giderilmesini gerektirir."
+  },
+  {
+    "difficulty": "Zor",
+    "topic": "Kavrama",
+    "page": 110,
+    "visual": "clutch",
+    "q": "Yük altında motor devri artıyor, hız aynı oranda artmıyor; pedal tam bırakılmış ve kavrama hidrolik ayırma mekanizması serbest dönüyor. Hangisi öncelikli incelenir?",
+    "options": [
+      "Balata sürtünme yüzeyi ve baskı kuvveti",
+      "Vites seçici telin merkezleme ayarı",
+      "Diferansiyel uydu dişli pimi",
+      "Kardan mili balans ağırlığı"
+    ],
+    "answer": 0,
+    "explanation": "Kaydırma bulguları ve ayırmanın serbest olması kavramanın sürtünme kapasitesini ön plana çıkarır."
+  },
+  {
+    "difficulty": "Zor",
+    "topic": "Tork Konvertörü",
+    "page": 153,
+    "visual": "converter",
+    "q": "Otomatik aktarmalı araçta sabit seyirde lock-up devreye girmesi gerekirken motor devri yük değişiminde dalgalanıyor. Öncelikli inceleme hangisidir?",
+    "options": [
+      "Lock-up kavraması kumandası ve kayma verileri",
+      "Stator dış muhafaza bağlantı cıvataları",
+      "Aks körüğü yağlama miktarı",
+      "Diferansiyel hava tahliye tapası"
+    ],
+    "answer": 0,
+    "explanation": "Sabit seyirde kilitleme kaymasının artması lock-up kumandası ve gerçek kayma değerleriyle doğrulanmalıdır."
+  },
+  {
+    "difficulty": "Zor",
+    "topic": "Tork Konvertörü",
+    "page": 156,
+    "visual": "converter",
+    "q": "Stall testi yapılırken konvertör ve şanzıman yağının aşırı ısınmasını önlemek için en doğru yaklaşım hangisidir?",
+    "options": [
+      "Testi üretici süre ve sıcaklık sınırları içinde kısa süre uygulamak",
+      "Testi sabit gazda en az birkaç dakika sürdürmek",
+      "Ölçüm boyunca soğutma fanını devre dışı bırakmak",
+      "Aracın vitesini boşa alıp tam gazda beklemek"
+    ],
+    "answer": 0,
+    "explanation": "Stall testi yüksek ısı oluşturur; süre ve sıcaklık için üretici prosedürüne uyulmalıdır."
+  },
+  {
+    "difficulty": "Zor",
+    "topic": "Mekanik Vites Kutusu",
+    "page": 166,
+    "visual": "gearbox",
+    "q": "Sadece 3. vitese geçerken senkromeç sesi geliyor; diğer vitesler normal. Debriyajın tam ayırdığı doğrulandı. Hangi parça öncelikle incelenmelidir?",
+    "options": [
+      "3. vites senkromeç bileziği ve kavrama dişleri",
+      "Debriyaj ana merkez piston keçesi",
+      "Diferansiyel mahruti rulmanı",
+      "Şaft orta yatak lastiği"
+    ],
+    "answer": 0,
+    "explanation": "Sorun tek vitese özgüyse ve kavrama tam ayırıyorsa ilgili senkromeç takımı öncelikli incelenir."
+  },
+  {
+    "difficulty": "Zor",
+    "topic": "Mekanik Vites Kutusu",
+    "page": 166,
+    "visual": "gearbox",
+    "q": "Giriş 200 Nm ve 2400 dev/dk, toplam oran 4 ve toplam mekanik verim %90 ise çıkış devri ve momenti sırasıyla nedir?",
+    "options": [
+      "600 dev/dk ve 720 Nm",
+      "600 dev/dk ve 800 Nm",
+      "960 dev/dk ve 720 Nm",
+      "960 dev/dk ve 800 Nm"
+    ],
+    "answer": 0,
+    "explanation": "Çıkış devri 2400/4=600 dev/dk; moment 200×4×0,90=720 Nm."
+  }
 ]
