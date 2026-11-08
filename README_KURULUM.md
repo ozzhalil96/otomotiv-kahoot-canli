@@ -87,3 +87,12 @@ Bu projede gerçek zamanlı sistem için Python tabanlı **tek sunucu** kullanı
 - **Güçlü çeldiriciler:** Benzer teknik kavramlar, yakın sayısal sonuçlar ve birbirine benzeyen arıza nedenleri kullanılmıştır.
 - **Kitap referansı:** Soruların `page` alanları H.K.S. kitabındaki basılı sayfa numarasını gösterir.
 - **Önceden Render’a yayımladıysanız:** Güncel dosyaları GitHub deponuza yükleyip yeni dağıtım (deploy) yapın; yalnızca eski ZIP’i indirmek sitedeki soruları değiştirmez.
+
+## 6) Sesli sürüm – Öğretmen ekranı
+
+- Sağ üstte (dar ekranda altta) **YARIŞMA SESLERİ** kontrolü yalnızca öğretmen ekranında görünür.
+- **Sesi aç/kapat**, ses seviyesi ayarı ve **Doğru / Yanlış / Intro** önizlemeleri bulunur.
+- Özgün elektronik arka plan müziği, doğru/yanlış efektleri, son 5 saniye geri sayımı ve açılış sesi harici dosyaya gerek olmadan Web Audio ile üretilir.
+- Tarayıcı ses oynatmak için ilk kullanıcı dokunuşunu isteyebilir; öğretmen ses kontrolünden açabilir.
+- Öğrencilerin telefonlarından ses çıkmaz. Doğru cevap açıldığında en az bir doğru cevap varsa başarı sesi, hiç doğru cevap yoksa uyarı sesi çalar; gerçek zamanlı istatistik yalnızca öğretmen ekranına iletilir.
+- Sağ alt köşede öğretmen ve okulun imzası gösterilir.

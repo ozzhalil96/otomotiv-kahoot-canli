@@ -43,7 +43,7 @@ def state(r,role,player_id=None):
       'ranking':ranking(r),'participants':len(r['players']),
       'answered':len(r['answers']),'joined':r['created'],
       'myId':player_id,'myAnswer':r['answers'].get(player_id),'myScore':r['players'].get(player_id,{}).get('score',0),
-      'host':role=='host'}
+      'host':role=='host', 'roundStats':({'correct':sum(1 for a in r['answers'].values() if a['correct']), 'wrong':sum(1 for a in r['answers'].values() if not a['correct'])} if role=='host' and reveal else None)}
 
 def emit(code):
     with lock:
