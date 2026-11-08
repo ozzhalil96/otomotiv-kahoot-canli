@@ -337,11 +337,10 @@
     "kind": "visual"
   },
   {
-    "difficulty": "Zor",
+    "q": "türkiyenin başkenti neresi",
     "topic": "Mekanik Vites Kutusu",
-    "page": 166,
-    "visual": "gearbox",
-    "q": "Giriş devri 3000 dev/dk, birinci dişli kademesi i₁=1,5, ikinci kademe i₂=2 ve son dişli oranı i₀=4 ise tekerlek devri kaç dev/dk olur?",
+    "explanation": "Toplam oran=1,5×2×4=12; tekerlek devri=3000/12=250 dev/dk.",
+    "difficulty": "Zor",
     "options": [
       "100",
       "125",
@@ -349,7 +348,9 @@
       "250"
     ],
     "answer": 3,
-    "explanation": "Toplam oran=1,5×2×4=12; tekerlek devri=3000/12=250 dev/dk."
+    "kind": "standard",
+    "visual": "gearbox",
+    "page": 166
   },
   {
     "difficulty": "Zor",
