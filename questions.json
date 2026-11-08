@@ -18,16 +18,17 @@
     "difficulty": "Kolay",
     "topic": "Güç Aktarma",
     "page": 37,
-    "visual": "clutch",
-    "q": "Standart manuel aktarmada kavrama hangi iki ünite arasında bulunur?",
+    "visual": "clutch_hotspot",
+    "q": "Şemada sarı çerçeveyle işaretlenen, volan ile baskı plakası arasındaki sürtünme elemanı hangisidir?",
     "options": [
-      "Vites kutusu ile diferansiyel",
-      "Motor ile vites kutusu",
-      "Diferansiyel ile aks mili",
-      "Şaft ile arka aks"
+      "Kavrama diski",
+      "Baskı plakası",
+      "Volan",
+      "Ayırma yatağı"
     ],
-    "answer": 1,
-    "explanation": "Kavrama, motor ile vites kutusu arasındaki güç bağlantısını kurar ve keser."
+    "answer": 0,
+    "explanation": "İşaretli orta disk, balatalı kavrama diskidir. Volan ve baskı plakası arasında sıkıştırılarak tork aktarır.",
+    "kind": "visual"
   },
   {
     "difficulty": "Kolay",
@@ -63,16 +64,17 @@
     "difficulty": "Kolay",
     "topic": "Güç Aktarma",
     "page": 39,
-    "visual": "differential",
-    "q": "Diferansiyel çıkışından çekiş tekerleğine hareketi hangi parça iletir?",
+    "visual": "diff_hotspot",
+    "q": "Diferansiyel şemasında sarı çemberle işaretli, hareketi diferansiyelden tekerleğe ileten parça hangisidir?",
     "options": [
-      "Ana mil",
+      "Kardan mili",
       "Aks mili",
-      "Prizdirek mili",
+      "Mahruti mili",
       "Ara mil"
     ],
     "answer": 1,
-    "explanation": "Aks milleri diferansiyel ile çekiş tekerlekleri arasında tork iletir."
+    "explanation": "Aks mili, diferansiyelden aldığı torku çekiş tekerleğine iletir. Kardan mili ise bazı aktarma düzenlerinde şanzıman ile diferansiyel arasında çalışır.",
+    "kind": "visual"
   },
   {
     "difficulty": "Kolay",
@@ -108,16 +110,17 @@
     "difficulty": "Kolay",
     "topic": "Kavrama",
     "page": 85,
-    "visual": "clutch",
-    "q": "Kavrama diskini volana doğru sıkarak tork iletimini sağlayan eleman hangisidir?",
+    "visual": "converter_hotspot",
+    "q": "Şemada sarı çemberle vurgulanan, akışın yönünü değiştiren orta eleman hangisidir?",
     "options": [
-      "Baskı plakası",
-      "Ayırma yatağı",
-      "Debriyaj pedalı",
-      "Prizdirek mili"
+      "Pompa çarkı",
+      "Türbin çarkı",
+      "Stator",
+      "Lock-up kavraması"
     ],
-    "answer": 0,
-    "explanation": "Baskı plakası kavrama diskini volana bastırarak sürtünmeyle tork aktarılmasını sağlar."
+    "answer": 2,
+    "explanation": "Pompa ve türbin arasındaki stator, dönüş yağını yönlendirerek özellikle kalkışta moment artışına katkıda bulunur.",
+    "kind": "visual"
   },
   {
     "difficulty": "Kolay",
@@ -184,15 +187,16 @@
     "topic": "Kavrama",
     "page": 100,
     "visual": "clutch",
-    "q": "Debriyaj pedalına tam basılmasına rağmen araç dururken geri vitese geçiş zor ve dişli sesi oluşuyorsa en olası sorun hangisidir?",
+    "q": "SERVİS VAKASI: Motor çalışırken birinci ve geri vitese geçiş zor, motor kapalıyken geçiş normal. Pedala basılınca kavrama tam ayırmıyor. En olası arıza hangisidir?",
     "options": [
-      "Kavrama tam ayırmıyor",
-      "Kavrama aşırı kaçırıyor",
-      "Diferansiyel kilitleniyor",
-      "Şaft balansı bozuluyor"
+      "Kavrama ayırma hareketinin yetersizliği",
+      "Kavrama baskı kuvvetinin yetersizliği",
+      "Diferansiyel boşluğunun artması",
+      "Şanzıman çıkış keçesinin aşınması"
     ],
     "answer": 0,
-    "explanation": "Kavramanın tam ayırmaması giriş milinde dönmenin sürmesine ve vites geçişinde zorlanmaya yol açar."
+    "explanation": "Motor kapalıyken viteslerin kolay geçmesi, motor açıkken kavramanın tam ayırmaması ile uyumludur. Hidrolik hava/kaçak ve ayırma mekanizması kontrol edilir.",
+    "kind": "fault"
   },
   {
     "difficulty": "Orta",
@@ -228,16 +232,17 @@
     "difficulty": "Orta",
     "topic": "Tork Konvertörü",
     "page": 144,
-    "visual": "converter",
-    "q": "Tork konvertöründeki statorun tek yön kavraması kalkıştaki moment artışına nasıl katkı sağlar?",
+    "visual": "converter_hotspot",
+    "q": "Tork konvertörü şemasındaki sarı işaretli parçanın tek yön kavraması kalkışta ne sağlar?",
     "options": [
-      "Statorun uygun yönde dönmesini engelleyerek yağ akışını yönlendirir",
-      "Pompanın motor devrinden daha hızlı dönmesini sağlar",
-      "Türbinin her koşulda pompayla eşdevirli dönmesini sağlar",
-      "Türbin ile pompa arasındaki yağı tamamen durdurur"
+      "Türbinden dönen akışı yönlendirip moment artışı",
+      "Pompayı giriş milinden ayırıp boşa alma",
+      "Şanzıman çıkış oranını mekanik olarak yükseltme",
+      "Türbin ile pompayı sürekli kilitleme"
     ],
     "answer": 0,
-    "explanation": "Stator, belirli çalışma durumlarında yağın dönüş akışını yönlendirerek pompanın işini destekler ve moment çoğalmasına katkı sağlar."
+    "explanation": "İşaretli statorun tek yön kavraması, uygun çalışma koşullarında statoru tutar ve akışı yönlendirerek tork çarpanına katkı sağlar.",
+    "kind": "visual"
   },
   {
     "difficulty": "Orta",
@@ -318,16 +323,17 @@
     "difficulty": "Zor",
     "topic": "Mekanik Vites Kutusu",
     "page": 165,
-    "visual": "gearbox",
-    "q": "Giriş momenti 180 Nm, vites oranı 2,5 ve bu kademenin mekanik verimi %92 ise çıkış momenti kaç Nm olur?",
+    "visual": "gearbox_hotspot",
+    "q": "Şemada büyük, sarı işaretli çıkış dişlisi 54 diş; küçük giriş dişlisi 18 diştir. Giriş devri 2700 dev/dk ise ideal çıkış devri kaçtır?",
     "options": [
-      "396",
-      "414",
-      "450",
-      "489"
+      "810 dev/dk",
+      "900 dev/dk",
+      "972 dev/dk",
+      "1080 dev/dk"
     ],
     "answer": 1,
-    "explanation": "Mçıkış = 180 × 2,5 × 0,92 = 414 Nm."
+    "explanation": "İdeal dişli oranı i=54/18=3; çıkış devri 2700/3=900 dev/dk olur.",
+    "kind": "visual"
   },
   {
     "difficulty": "Zor",
@@ -364,15 +370,16 @@
     "topic": "Kavrama",
     "page": 109,
     "visual": "clutch",
-    "q": "Kavrama yeni değişmiştir. Pedala tam basıldığında vitesler zor geçiyor; hidrolik devrede hava ve yetersiz ayırma hareketi ölçülüyor. İlk doğru işlem nedir?",
+    "q": "SERVİS VAKASI: Kavrama yeni değişti. Pedala tam basıldığında vites geçişleri zor; hidrolik haznede seviye düşük ve ayırma silindirinde kaçak var. İlk uygun işlem hangisidir?",
     "options": [
-      "Hidrolik devrenin havasını alıp ayırma hareketini yeniden kontrol etmek",
-      "Sürtünme diskini tekrar değiştirip yol testine çıkmak",
-      "Diferansiyel dişli boşluğunu ayarlamak",
-      "Şanzıman yağını kalın viskoziteyle değiştirmek"
+      "Senkromeçleri yenileyip yol testi yapmak",
+      "Diferansiyel yağı değiştirip dinlemek",
+      "Ayırma silindiri kaçağını giderip sistemi havasını almak",
+      "Baskı yayı sertliğini artırıp denemek"
     ],
-    "answer": 0,
-    "explanation": "Ölçümle doğrulanan yetersiz ayırma hareketi önce hidrolik hava/yol probleminin giderilmesini gerektirir."
+    "answer": 2,
+    "explanation": "Kaçak ayırma silindiri basıncı düşürür. Onarım sonrası uygun sıvı ile hidrolik devre havası alınır; kavrama ayırma işlevi doğrulanır.",
+    "kind": "fault"
   },
   {
     "difficulty": "Zor",
@@ -394,15 +401,16 @@
     "topic": "Tork Konvertörü",
     "page": 153,
     "visual": "converter",
-    "q": "Otomatik aktarmalı araçta sabit seyirde lock-up devreye girmesi gerekirken motor devri yük değişiminde dalgalanıyor. Öncelikli inceleme hangisidir?",
+    "q": "SERVİS VAKASI: Otomatik araçta sabit hızda lock-up devreye girmesi gerekirken motor devri yükle dalgalanıyor, kayma fazla. Öncelikli kontrol hangisidir?",
     "options": [
-      "Lock-up kavraması kumandası ve kayma verileri",
-      "Stator dış muhafaza bağlantı cıvataları",
-      "Aks körüğü yağlama miktarı",
-      "Diferansiyel hava tahliye tapası"
+      "Diferansiyel rulman ön yükü",
+      "Tork konvertörü lock-up kumandası ve kavraması",
+      "Kardan mili balans ayarı",
+      "Manuel şanzıman senkromeç halkası"
     ],
-    "answer": 0,
-    "explanation": "Sabit seyirde kilitleme kaymasının artması lock-up kumandası ve gerçek kayma değerleriyle doğrulanmalıdır."
+    "answer": 1,
+    "explanation": "Lock-up kavraması kapandığında hidrodinamik kayma azalır. Komuta, hidrolik basınç ve kavrama tutunması araştırılmalıdır.",
+    "kind": "fault"
   },
   {
     "difficulty": "Zor",
@@ -424,15 +432,16 @@
     "topic": "Mekanik Vites Kutusu",
     "page": 166,
     "visual": "gearbox",
-    "q": "Sadece 3. vitese geçerken senkromeç sesi geliyor; diğer vitesler normal. Debriyajın tam ayırdığı doğrulandı. Hangi parça öncelikle incelenmelidir?",
+    "q": "SERVİS VAKASI: Debriyaj ayırması normal. Yalnızca 3. vitese geçerken dişli sesi geliyor; diğer viteslerde sorun yok. İlk hangi eleman incelenmelidir?",
     "options": [
-      "3. vites senkromeç bileziği ve kavrama dişleri",
-      "Debriyaj ana merkez piston keçesi",
-      "Diferansiyel mahruti rulmanı",
-      "Şaft orta yatak lastiği"
+      "Şanzıman ana mil çıkış keçesi",
+      "3. vites senkromeç grubu",
+      "Diferansiyel mahruti yatağı",
+      "Kavrama hidrolik ana merkezi"
     ],
-    "answer": 0,
-    "explanation": "Sorun tek vitese özgüyse ve kavrama tam ayırıyorsa ilgili senkromeç takımı öncelikli incelenir."
+    "answer": 1,
+    "explanation": "Tek bir vitese özgü geçişte sürtme/ses sorunu, ilgili senkromeç ve kavrama dişleriyle ilişkilidir; yağ ve bağlantılar da kontrol edilir.",
+    "kind": "fault"
   },
   {
     "difficulty": "Zor",

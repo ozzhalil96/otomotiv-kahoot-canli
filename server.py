@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Kütüphanesiz SSE/HTTP gerçek zamanlı otomotiv yarışması sunucusu."""
-import os, json, time, math, re, secrets, random, threading, queue, io
+import os, json, time, math, re, secrets, random, threading, queue, io, csv
 from pathlib import Path
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
@@ -12,7 +12,8 @@ PORT=int(os.environ.get('PORT','8000'))
 rooms={}
 lock=threading.RLock()
 listeners=defaultdict(set)
-DURATION=int(os.environ.get('QUESTION_SECONDS','25'))
+DURATIONS={'Kolay':15,'Orta':25,'Zor':40}
+def question_duration(q): return DURATIONS.get(q.get('difficulty'),25)
 QUESTION_COUNT=int(os.environ.get('QUESTION_COUNT','30'))
 LEVELS=('Kolay','Orta','Zor')
 def select_questions():
@@ -37,13 +38,13 @@ def state(r,role,player_id=None):
     now=time.time(); ix=r['idx']; q=r['questions'][ix] if 0 <= ix < len(r['questions']) else None
     reveal=r['phase'] in ('reveal','finished')
     return {'code':r['code'],'phase':r['phase'],'index':ix+1 if ix>=0 else 0,'total':len(r['questions']),
-      'deadline':round(r['deadline']*1000),'serverNow':round(now*1000),'duration':DURATION,
-      'question':({'q':q['q'],'options':q['options'],'topic':q['topic'],'difficulty':q.get('difficulty','Orta'),'visual':q['visual'],'page':q['page'],
+      'deadline':round(r['deadline']*1000),'serverNow':round(now*1000),'duration':question_duration(q) if q else 0,
+      'question':({'q':q['q'],'options':q['options'],'topic':q['topic'],'difficulty':q.get('difficulty','Orta'),'visual':q['visual'],'page':q['page'],'kind':q.get('kind','standard'),
          **({'answer':q['answer'],'explanation':q['explanation']} if reveal else {})} if q else None),
       'ranking':ranking(r),'participants':len(r['players']),
       'answered':len(r['answers']),'joined':r['created'],
       'myId':player_id,'myAnswer':r['answers'].get(player_id),'myScore':r['players'].get(player_id,{}).get('score',0),
-      'host':role=='host', 'roundStats':({'correct':sum(1 for a in r['answers'].values() if a['correct']), 'wrong':sum(1 for a in r['answers'].values() if not a['correct'])} if role=='host' and reveal else None)}
+      'host':role=='host','analysis':r['history'] if role=='host' else None, 'roundStats':({'correct':sum(1 for a in r['answers'].values() if a['correct']), 'wrong':sum(1 for a in r['answers'].values() if not a['correct'])} if role=='host' and reveal else None)}
 
 def emit(code):
     with lock:
@@ -53,10 +54,23 @@ def emit(code):
         try:q.put_nowait(json.dumps(state(r,role,pid),ensure_ascii=False))
         except queue.Full:pass
 
+def finalize_round(r):
+    if r['idx'] < 0 or r['idx'] >= len(r['questions']): return
+    if any(item['index']==r['idx']+1 for item in r['history']): return
+    q=r['questions'][r['idx']]
+    answers=list(r['answers'].values()); total=len(r['players']); correct=sum(bool(a['correct']) for a in answers)
+    choices=[sum(1 for a in answers if a['choice']==i) for i in range(4)]
+    r['history'].append({'index':r['idx']+1,'difficulty':q['difficulty'],'topic':q['topic'],
+      'question':q['q'],'kind':q.get('kind','standard'),'page':q['page'],'correctChoice':q['answer'],
+      'correct':correct,'wrong':len(answers)-correct,'unanswered':max(0,total-len(answers)),
+      'total':total,'rate':round(100*correct/total,1) if total else 0,
+      'choices':choices,'avgSeconds':round(sum(a['elapsed'] for a in answers)/len(answers),1) if answers else None})
+
 def advance(r):
     r['idx']+=1
     if r['idx']>=len(r['questions']):r['phase']='finished';r['deadline']=0
-    else:r['phase']='question';r['deadline']=time.time()+DURATION;r['answers']={};r['startedAt']=time.time()
+    else:
+      r['phase']='question';r['startedAt']=time.time();r['deadline']=r['startedAt']+question_duration(r['questions'][r['idx']]);r['answers']={}
 
 def tick():
     while True:
@@ -64,7 +78,7 @@ def tick():
       with lock:
        for c,r in list(rooms.items()):
         if r['phase']=='question' and time.time()>=r['deadline']:
-          r['phase']='reveal';emit(c)
+          finalize_round(r);r['phase']='reveal';emit(c)
 threading.Thread(target=tick,daemon=True).start()
 
 class Handler(BaseHTTPRequestHandler):
@@ -112,6 +126,17 @@ class Handler(BaseHTTPRequestHandler):
       finally:
        with lock:listeners[code].discard(listener)
       return
+    if p=='/api/report.csv':
+      v=parse_qs(u.query);code=v.get('code',[''])[0].upper()
+      with lock:
+       r,who,err=self.identify(code,{'code':code,'hostToken':v.get('hostToken',[''])[0]})
+       if err or who!='host':return self.respond({'error':'Bu raporu yalnızca öğretmen alabilir'},403)
+       rows=list(r['history'])
+      output=io.StringIO(); writer=csv.writer(output,delimiter=';')
+      writer.writerow(['Soru','Seviye','Konu','Soru metni','Tür','Kitap sayfası','Doğru şık','Doğru','Yanlış','Boş','Katılımcı','Başarı %','Ort. yanıt saniye','A','B','C','D'])
+      for x in rows:
+       writer.writerow([x['index'],x['difficulty'],x['topic'],x['question'],x['kind'],x['page'],'ABCD'[x['correctChoice']],x['correct'],x['wrong'],x['unanswered'],x['total'],x['rate'],x['avgSeconds'] or '',*x['choices']])
+      raw=('\ufeff'+output.getvalue()).encode('utf-8');self.headers_(200,'text/csv; charset=utf-8',len(raw));self.wfile.write(raw);return
     if p=='/api/qr':
       v=parse_qs(u.query);code=v.get('code',[''])[0].upper();
       if code not in rooms:return self.respond({'error':'Oda yok'},404)
@@ -139,7 +164,7 @@ class Handler(BaseHTTPRequestHandler):
     if path=='/api/create':
      with lock:
       code=code_new();r={'code':code,'hostToken':secrets.token_urlsafe(24),'created':time.time(),'phase':'lobby','idx':-1,
-        'questions':select_questions()[:QUESTION_COUNT],'players':{},'answers':{},'deadline':0}
+        'questions':select_questions()[:QUESTION_COUNT],'players':{},'answers':{},'history':[],'deadline':0}
       rooms[code]=r
      return self.respond({'code':code,'hostToken':r['hostToken']})
     if path=='/api/join':
@@ -164,12 +189,14 @@ class Handler(BaseHTTPRequestHandler):
        if action=='start' and r['phase']=='lobby':
         if len(r['players'])<1:return self.respond({'error':'Önce en az bir öğrenci katılmalı'},409)
         advance(r)
-       elif action=='reveal' and r['phase']=='question':r['phase']='reveal'
+       elif action=='reveal' and r['phase']=='question':finalize_round(r);r['phase']='reveal'
        elif action=='next' and r['phase']=='reveal':advance(r)
-       elif action=='finish' and r['phase'] in ('question','reveal'):r['phase']='finished';r['deadline']=0
+       elif action=='finish' and r['phase'] in ('question','reveal'):
+        if r['phase']=='question':finalize_round(r)
+        r['phase']='finished';r['deadline']=0
        elif action=='restart':
         r['questions']=select_questions()[:QUESTION_COUNT]
-        r['idx']=-1;r['phase']='lobby';r['answers']={};r['deadline']=0
+        r['idx']=-1;r['phase']='lobby';r['answers']={};r['history']=[];r['deadline']=0
         for p in r['players'].values():p.update(score=0,correct=0,streak=0)
        else:return self.respond({'error':'Bu işlem şu anda kullanılamaz'},409)
       elif action=='answer':
@@ -181,11 +208,11 @@ class Handler(BaseHTTPRequestHandler):
        question=r['questions'][r['idx']];p=r['players'][who]
        correct=answer==question['answer']
        remaining=max(0,r['deadline']-time.time())
-       gained=(1000+round(remaining/DURATION*500)+min(p['streak'],4)*100) if correct else 0
+       gained=(1000+round(remaining/question_duration(question)*500)+min(p['streak'],4)*100) if correct else 0
        if correct:p['correct']+=1;p['streak']+=1;p['score']+=gained
        else:p['streak']=0
-       r['answers'][who]={'choice':answer,'correct':correct,'gained':gained}
-       if len(r['answers'])==len(r['players']):r['phase']='reveal'
+       r['answers'][who]={'choice':answer,'correct':correct,'gained':gained,'elapsed':round(time.time()-r['startedAt'],2)}
+       if len(r['answers'])==len(r['players']):finalize_round(r);r['phase']='reveal'
       else:return self.respond({'error':'Yetkisiz işlem'},403)
       emit(code)
      return self.respond({'ok':True})

@@ -1,102 +1,92 @@
-# OTOMOTİV KAHOOT – CANLI BİLGİ YARIŞMASI
+# Otomotiv Kahoot — Canlı Yarışma 4.0
 
-**Kaynak:** Kullanıcının yüklediği *H.K.S. CİLT-1111(1).pdf* – Hareket Kontrol Sistemleri Atölyesi; güç aktarma organları, kavrama sistemleri, tork konvertörleri ve mekanik vites kutuları. Her soruda kitap sayfası referansı yer alır. Sorular kitabın içeriğinden hareketle özgün hazırlanmıştır; kitaptaki sınav sorularının birebir kopyası değildir.
+**Kaynak:** Öğretmen tarafından sağlanan *H.K.S. CİLT-1111(1).pdf* (Hareket Kontrol Sistemleri Atölyesi). Güç aktarma organları, kavrama, tork konvertörü ve mekanik vites kutuları üzerine özgün sorular hazırlanmıştır. Kitabın basılı sayfa numaraları sorularda belirtilir.
 
-## Oyun neler yapar?
-- Öğretmen bilgisayarından yeni bir yarışma odası açar. Oda kodu ve **o anki bağlantıyı içeren gerçek QR kodu** oluşturulur.
-- Öğrenciler QR kodla telefondan bağlanıp isim yazar. Aynı anda en çok 80 öğrenci katılabilir (pratik sınır sunucu ve ağ kapasitesine bağlıdır).
-- Tam 30 soru sorulur: ilk 10 Kolay, sonraki 10 Orta, son 10 Zor. Her zorluk grubu kendi içinde karıştırılır. Her soruda **25 saniye** vardır.
-- Her soruyu doğru ve hızlı yanıtlayan daha yüksek puan alır: 1000 temel + en çok 500 hız bonusu + en çok 400 seri bonusu. Yanlış yanıt sıfır puandır.
-- Öğrencinin cevabı **sunucuda** doğrulanır ve bir soruya yalnızca bir kez cevap verilir.
-- Öğretmen istediği an soru süresini sonlandırıp doğru yanıtı gösterebilir. Herkes cevap verirse doğru yanıt otomatik gösterilir. Süre dolunca da doğru yanıt otomatik açılır.
-- Canlı liderlik tablosu, teknik SVG şemalar, soru sonu açıklama ve sonuç ekranı vardır.
-- İnternet kullanmadan **aynı Wi-Fi ağı üzerindeki cihazlarla** da çalıştırılabilir (sunucu Python ile çalışan bir öğretmen bilgisayarıdır).
+## Bu sürümde neler var?
 
-## 1) Windows bilgisayarda çalıştırma
+- **30 soru:** 10 kolay (15 saniye), 10 orta (25 saniye), 10 zor (40 saniye). Gruplar sırayla, sorular grup içinde karışık gelir.
+- **QR ile bireysel katılım:** Herkes kendi telefonundan katılır. Öğretmen soruları ve geçişleri yönetir. Gerçek zamanlı bağlantı Server-Sent Events ile sağlanır.
+- **Canlı sıralama animasyonları:** Sıralamada yükseliş animasyonu ve her 5 soruda ara liderlik duyurusu.
+- **Sürpriz arıza soruları:** Müşteri şikâyeti ve teknik bulguların değerlendirilmesi.
+- **Görselden parça bulma:** İşaretli parçayı veya elemanı gösteren özgün teknik SVG şemaları.
+- **Öğretmen analiz paneli:** Finalde konu bazlı başarı çubukları, soru bazlı doğru/yanlış/boş adetleri, CSV indirme.
+- **Puan sistemi:** Doğru cevap 1000 temel + en fazla 500 hız bonusu + en fazla 400 seri bonusu. Yanlış cevap 0 puan.
+- **Sesler:** Yalnızca öğretmen ekranında özgün Web Audio arka plan melodisi, açılış, doğru/yanlış ve son 5 saniye efektleri. Ses aç/kapat ve seviye kontrolü.
+- **İmza:** Sağ altta “Otomotiv Teknolojisi Öğretmeni Halil ÖZ” ve “Bursa Şehit Ömer Halisdemir MTAL”.
 
-1. ZIP arşivini açın. `Otomotiv_Kahoot_Canli` klasörüne girin.
-2. Bilgisayarda **Python 3.10 veya üstü** yüklü olmalı. Kurarken `Add python.exe to PATH` seçeneğini işaretleyin.
-3. `BASLAT_WINDOWS.bat` dosyasına çift tıklayın. İlk seferde QR üretim kütüphanesini internetten yükler; daha sonra sunucu başlar.
-4. Öğretmen bilgisayarında `http://localhost:8000` adresini açın.
-5. **Öğretmen • Oda oluştur** seçeneğini kullanın.
-6. Öğrencilerin aynı Wi-Fi ağı üzerinden bağlanması için `ipconfig` komutuyla öğretmen bilgisayarının yerel IPv4 adresini öğrenin (örnek: `192.168.1.20`).
-7. **Önemli:** Öğretmen kendi cihazında `localhost` ile oda açarsa oluşturulan QR öğrencilere uygun olmaz. Öğretmen de oyunu `http://192.168.1.20:8000` benzeri **yerel ağ IP adresi** üzerinden açmalı ve o adreste yeni oda oluşturmalıdır. Bu sayede QR kod öğrenci telefonlarında da erişilir.
-8. Windows Güvenlik Duvarı erişim sorarsa özel ağ için Python'a izin verin. Öğretmen bilgisayarı ve telefonlar **aynı Wi-Fi** ağına bağlı olmalıdır. Misafir Wi-Fi ağında cihazlar birbirinden yalıtılmışsa bağlantı kurulmayabilir.
+## GitHub klasör düzeni — ÖNEMLİ
 
-**Manuel başlatma (Windows/macOS/Linux):**
+ZIP'in **içeriğini** GitHub deponuzun ana dizinine yükleyin, ZIP dosyasının kendisini veya içinde fazladan bir üst klasörü yüklemeyin.
+
+```text
+otomotiv-kahoot-canli/
+  server.py
+  questions.json
+  requirements.txt
+  render.yaml
+  README_KURULUM.md
+  BASLAT_WINDOWS.bat
+  public/
+    index.html
+    assets/
+      app.js
+      sound.js
+      style.css
+```
+
+Özellikle `index.html` **public klasöründe**; `app.js`, `style.css`, `sound.js` ise **public/assets klasöründe** olmalıdır. Ana dizindeki aynı adlı dosyalar uygulama tarafından **kullanılmaz**. Önceki GitHub yüklemenizde bu fazlalıklar varsa karışıklığı önlemek için silmek faydalıdır; esas olan doğru klasördeki dosyaların güncellenmesidir.
+
+### GitHub Web arayüzüyle güncelleme
+
+1. Depodaki `public/index.html` dosyasını en son sürümle değiştirin.
+2. `public/assets/app.js`, `public/assets/style.css`, `public/assets/sound.js` dosyalarını güncelleyin.
+3. Depo **kökündeki** `server.py` ve `questions.json` dosyalarını güncelleyin.
+4. Her değişiklik için **Commit changes** deyin.
+5. Render → Web Service → **Manual Deploy → Deploy latest commit**.
+6. Tarayıcıda sayfayı `Ctrl+F5` ile yenileyin. Üst kısımda **SÜRÜM 4.0 · ANALİZ + GÖRSEL + MÜZİK** görünmelidir.
+
+**Uyarı:** ZIP'i GitHub sitesine tek dosya olarak yüklemek uygulamayı güncellemez. Render'ın GitHub ana dalınıza (`main`) bağlı olduğunu kontrol edin.
+
+## Render üzerinde Python yüklemeden çalıştırma
+
+Bu adımlar **kendi bilgisayarınıza Python kurmayı gerektirmez**:
+
+1. GitHub üzerinde bir repository oluşturup yukarıdaki klasör yapısıyla dosyaları yükleyin.
+2. https://dashboard.render.com → **New → Web Service** → GitHub deposunu bağlayın.
+3. Runtime: **Python**; Build Command: `pip install -r requirements.txt`; Start Command: `python server.py`; Root Directory: boş; plan: kullanımınıza uygun plan.
+4. Yayımlandığında `https://<sunucu>.onrender.com` bağlantısını açın; öğretmen odası oluşturun.
+5. Öğrenciler QR kodu okutarak **farklı Wi-Fi veya mobil bağlantılardan** katılabilir. Öğretmenin gizli `/host?token=...` adresini öğrencilere göndermeyin.
+6. Yeni yarışma başlamadan önce 2 farklı cihazla katılım ve puan güncellemesini deneyin.
+
+**Render ücretsiz planı:** Sunucu uykuya geçebilir. Oyun odaları ve sonuçlar bellektedir; yeniden başlatma sonrası kaybolur. Sınıf sınavı veya yüksek katılımlı yarışma için güvenilir/uyumayan bir sunucu kullanın.
+
+## İsteğe bağlı yerel kullanım
+
+Python kurulu olan bir bilgisayarda:
 
 ```bash
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
 python server.py
 ```
 
-Terminal açık kaldığı sürece sunucu çalışır. Durdurmak için `Ctrl+C`.
+`http://localhost:8000` yalnızca o bilgisayardan açılır. Aynı Wi-Fi'deki öğrencilerin bağlanması için öğretmen oyunu bilgisayarın erişilebilir LAN IP adresinden açmalı ve QR kodu o adresten üretmelidir. **Windows bilgisayarınıza Python kuramıyorsanız Render yöntemini kullanın.**
 
-## 2) İnternete yayınlama – Render + GitHub
+## Öğretmen analiz raporu
 
-Bu projede gerçek zamanlı sistem için Python tabanlı **tek sunucu** kullanılır. HTML dosyasını tek başına Drive'a, Netlify'a veya sıradan statik siteye koymak çok oyunculu eşitlemeyi çalıştırmaz.
+30. sorunun sonunda yalnızca öğretmen ekranında **Öğretmen analiz paneli** görünür:
 
-1. `https://github.com` adresinde oturum açın, **New repository** ile örneğin `otomotiv-kahoot-canli` adlı bir depo oluşturun.
-2. ZIP içindeki `Otomotiv_Kahoot_Canli` klasörünün **içeriğini** depoya yükleyin. Kök dizinde `server.py`, `requirements.txt`, `questions.json`, `render.yaml`, `public` bulunmalı.
-3. `https://dashboard.render.com` adresinden **New > Web Service** seçin ve GitHub deponuzu bağlayın.
-4. Ayarlar: **Language / Runtime = Python**, **Build Command = `pip install -r requirements.txt`**, **Start Command = `python server.py`**. Planı ve bölgeyi belirleyip dağıtımı başlatın. `render.yaml` dosyası da aynı parametreleri içerir; isterseniz Render Blueprint kurulumunu kullanabilirsiniz.
-5. Dağıtım sonunda aldığınız `https://...onrender.com` adresini öğretmen bilgisayarında açın. **Öğretmen • Oda oluştur** seçeneğine tıklayın.
-6. Akıllı tahtada QR kodu gösterin. Öğrenciler **herhangi bir yerden, internet üzerinden** telefonlarıyla katılabilir.
-7. Öğretmen ekranı **gizli yetki anahtarı içeren URL** kullanır. Öğretmen bağlantısını öğrencilerle paylaşmayın. Öğrencilerle yalnızca QR kodu/katılım bağlantısını veya oda kodunu paylaşın.
+- Her konu için başarı yüzdesi
+- Soru başına doğru, yanlış ve cevap vermeyen sayıları
+- Başarı oranı %50'nin altındaki soruların vurgulanması
+- **Analizi CSV olarak indir**: Microsoft Excel'de açılabilen, noktalı virgülle ayrılmış ve Türkçe karakterleri destekleyen dosya. Ek olarak A/B/C/D cevap sayıları ve ortalama yanıtlama süreleri bulunur.
 
-**Render dokümanları:** https://render.com/docs/web-services ve https://render.com/docs/deploy-node-express-app (Node örneği; burada Python web servisi seçilecektir). Sunucu `PORT` ortam değişkenini ve `0.0.0.0` dinleme adresini destekler.
+CSV yalnızca öğretmenin oturum anahtarıyla alınabilir. Oturum verileri kalıcı olarak saklanmaz; raporu oyun bitince indirin.
 
-**Ücretsiz plan uyarısı:** Ücretsiz/uykuya alınabilen sunucularda uyku veya yeniden başlatma olduğunda aktif yarışma sıfırlanır. Sınıf içinde önemli bir oturum için uyumayan tek sunucu kullanın ve yarışma başlamadan bağlantıları kontrol edin. Uygulama verileri **bellekte tutulur**, veritabanına yazılmaz.
+## Sorular ve teknik notlar
 
-## 3) Sınıfta oynanış
-
-1. Öğretmen `Öğretmen • Oda oluştur` ile oda açar, QR kodunu tahtada gösterir.
-2. Öğrenciler karekodu okutur, isimlerini yazar.
-3. Öğretmen `Yarışmayı başlat` der.
-4. Her soru tahtada ve **öğrencinin telefonunda** görünür. Öğrenci tek bir yanıt verir.
-5. Süre dolunca / herkes cevaplayınca doğru yanıt ve açıklaması görünür. Öğretmen `Sonraki soru`ya tıklar.
-6. Son soru sonrası podyum görünür. İstenirse `Yeni yarışma başlat` kullanılabilir (aynı oyuncularla yeniden sıfırlanır).
-
-## 4) İçerik ve özelleştirme
-
-- `questions.json`: Sorular, 4 seçenek, doğru cevap indeksi `answer` (0=A, 1=B, 2=C, 3=D), açıklama, kaynak kitap sayfası ve görsel tipi. Değiştirdikten sonra sunucuyu yeniden başlatın.
-- `server.py`: `QUESTION_SECONDS` (varsayılan 25), `QUESTION_COUNT` (varsayılan 30) ortam değişkenleriyle süre ve tur sayısı ayarlanabilir.
-- `public/assets/app.js`: 5 SVG teknik çizim ve istemci işlevleri.
-- `public/assets/style.css`: Tasarım ve telefon görünümü.
-- Öğrenci adı dışında özel bilgi istenmez; isimler ve puanlar oturum sırasında bellektedir. Gerçek öğrenci adları yerine rumuz kullanılabilir.
-
-## 5) Teknik ve güvenlik notları
-
-- Bir oda yalnızca kendi gizli öğretmen anahtarıyla kontrol edilir. Öğrenci puanı yalnızca sunucuda hesaplanır. Yarışma başlamadan doğru cevaplar öğrenciye gönderilmez.
-- Gerçek zamanlı güncellemeler **Server-Sent Events (SSE)** ile öğrencilere iletilir. Cevaplar POST istekleriyle sunucuya gönderilir.
-- Sunucu belleği yeniden başlatılırsa oda, cevaplar ve puanlar silinir; yarışma kayıtları kalıcı değildir.
-- Bu sürüm temel sınıf içi kullanım içindir; kurumsal kimlik doğrulama, kalıcı sonuç kaydı, çoklu sunucu eşitlemesi veya gelişmiş kötüye kullanım koruması bulunmaz.
-- Görseller, çalışma materyalindeki kavramları desteklemek için hazırlanmış **özgün şematik SVG çizimleridir**; kitaptaki fotoğrafların birebir kopyası değildir.
-
-## Sorun giderme
-
-- **QR okutuluyor ama açılmıyor:** `localhost` yerine telefonun erişebildiği yerel IP veya HTTPS çevrim içi alan adından odayı yeniden oluşturun.
-- **Telefonda hiç sayfa açılmıyor:** Aynı ağa bağlı mısınız? Misafir ağının cihaz izolasyonu açık mı? Güvenlik duvarı 8000 portuna izin veriyor mu?
-- **Python bulunamadı:** Python kurulumu ve PATH ayarlarını kontrol edin; `py -3 server.py` komutunu deneyin.
-- **QR görünmüyor:** `python -m pip install -r requirements.txt` komutunu çalıştırın.
-- **Yarışma yarıda sıfırlandı:** Sunucu yeniden başlamış olabilir. Uyumayan bir sunucu kullanın.
-
-## 30 soruluk güncellenmiş sürüm
-
-- **Kolay 10 + Orta 10 + Zor 10:** Her yarışma bu sırayla ilerler.
-- **Güçlü çeldiriciler:** Benzer teknik kavramlar, yakın sayısal sonuçlar ve birbirine benzeyen arıza nedenleri kullanılmıştır.
-- **Kitap referansı:** Soruların `page` alanları H.K.S. kitabındaki basılı sayfa numarasını gösterir.
-- **Önceden Render’a yayımladıysanız:** Güncel dosyaları GitHub deponuza yükleyip yeni dağıtım (deploy) yapın; yalnızca eski ZIP’i indirmek sitedeki soruları değiştirmez.
-
-## 6) Sesli sürüm – Öğretmen ekranı
-
-- Sağ üstte (dar ekranda altta) **YARIŞMA SESLERİ** kontrolü yalnızca öğretmen ekranında görünür.
-- **Sesi aç/kapat**, ses seviyesi ayarı ve **Doğru / Yanlış / Intro** önizlemeleri bulunur.
-- Özgün elektronik arka plan müziği, doğru/yanlış efektleri, son 5 saniye geri sayımı ve açılış sesi harici dosyaya gerek olmadan Web Audio ile üretilir.
-- Tarayıcı ses oynatmak için ilk kullanıcı dokunuşunu isteyebilir; öğretmen ses kontrolünden açabilir.
-- Öğrencilerin telefonlarından ses çıkmaz. Doğru cevap açıldığında en az bir doğru cevap varsa başarı sesi, hiç doğru cevap yoksa uyarı sesi çalar; gerçek zamanlı istatistik yalnızca öğretmen ekranına iletilir.
-- Sağ alt köşede öğretmen ve okulun imzası gösterilir.
-
-
-## Sürüm kontrolü (3.1)
-Oyunu açınca üstte «SÜRÜM 3.1 · MÜZİK + İMZA» yazısı, sağ altta öğretmen ve okul imzası görünmelidir. Öğretmen oda oluşturunca sağ üstte «YARIŞMA SESLERİ» paneli çıkar. Açılış sesini duymuyorsanız sesi açıp «▶ Intro» düğmesine tıklayın. Bunlar görünmüyorsa GitHub/Render hâlâ eski sürümü yayımlamaktadır. ZIP içindeki klasörün **içeriğini** GitHub deposunun köküne yükleyin (ilave «Otomotiv_Kahoot_Canli» katmanı OLMAMALI). `public/assets/sound.js` dosyasının GitHub üzerinde var olduğunu doğrulayın. Render → Manual Deploy → Deploy latest commit, ardından Ctrl+F5.
+- `questions.json` 30 soru içerir: `difficulty`, `topic`, `q`, `options`, `answer` (0=A, 1=B, 2=C, 3=D), `page`, `explanation`, `visual` ve bazı sorularda `kind` alanları vardır.
+- Görseller kitap fotoğraflarının kopyası değil, özgün şematik çizimlerdir.
+- Sunucu puanı hesaplar ve öğrencilere cevap açıklanana dek doğru seçeneği göndermez.
+- Sınıf içi ölçme değerlendirmede teknik uygunluğu öğretmenin kontrol etmesi önerilir.
+- Tarayıcılar, kullanıcı etkileşimi gerçekleşmeden ses oynatmayı kısıtlayabilir. Öğretmen odasını açıp **Sesi aç / Intro** kontrolüyle sesi etkinleştirebilir.
+- Python web sunucusu yalnızca tek işlem/bellek üzerinde oda bilgisi tutar; birden fazla kopya arasında canlı oturum eşitlemesi yoktur.
